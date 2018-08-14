@@ -1,14 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Potepanec</title>
+    <title><%= yield(:title) %> | Potepan EC</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <%= render 'layouts/head' %>
   </head>
 
   <body>
+    <%= render 'layouts/header' %>
     <%= yield %>
+    <%= render 'layouts/footer' %>
+    <%= render 'layouts/login_modal' %>
+    <%= render 'layouts/sign_up_modal' %>
   </body>
 </html>
