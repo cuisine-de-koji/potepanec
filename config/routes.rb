@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :potepan do
+    get 'categories/show'
+  end
+
   # This line mounts Solidus's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to Spree::ProductsController.
   # If you would like to change where this engine is mounted, simply change the :at option to something different.
@@ -26,6 +30,7 @@ Rails.application.routes.draw do
     get :privacy_policy,            to: 'sample#privacy_policy'
 
     resources :products, only: [:show]
+    resources :categories, only: [:show]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
