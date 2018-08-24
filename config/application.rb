@@ -18,7 +18,7 @@ Bundler.require(*Rails.groups)
 
 module Potepanec
   class Application < Rails::Application
-    
+
     config.to_prepare do
       # Load application's model / class decorators
       Dir.glob(File.join(File.dirname(__FILE__), "../app/**/*_decorator*.rb")) do |c|
@@ -50,6 +50,13 @@ module Potepanec
 
     config.time_zone = 'Tokyo'
     config.generators.test_framework = :rspec
+
+    config.generators.view_specs = false
+    config.generators.helper_specs = false
+    config.generators.routing_specs = false
+    config.generators.request_specs = false
+
+
     config.generators.system_tests   = false
     config.generators.stylesheets    = false
     config.generators.javascripts    = false
