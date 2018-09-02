@@ -32,7 +32,7 @@
               <div id="carousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                   <% @images.each_with_index do |image, i| %>
-                    <div class="item <%= "active" if i == 0 %>" data-thumb="<%= i %>">
+                    <div class="item <%= "active" if i.zero? %>" data-thumb="<%= i %>">
                       <%= image_tag image.attachment(:large) %>
                     </div>
                   <% end %>
@@ -43,11 +43,7 @@
                   <div class="carousel-inner">
                     <% @images.each_with_index do |image, i| %>
                       <div data-target="#carousel" data-slide-to="<%= i %>" class="thumb"><%= image_tag image.attachment(:small) %></div>
-                      <!-- <div data-target="#carousel" data-slide-to="0" class="thumb"><%= image_tag("img/products/signle-product/product-slide-small-01.jpg") %></div>
-                      <div data-target="#carousel" data-slide-to="1" class="thumb"><%= image_tag("img/products/signle-product/product-slide-small-02.jpg") %></div>
-                      <div data-target="#carousel" data-slide-to="2" class="thumb"><%= image_tag("img/products/signle-product/product-slide-small-03.jpg") %></div>
-                      <div data-target="#carousel" data-slide-to="3" class="thumb"><%= image_tag("img/products/signle-product/product-slide-small-04.jpg") %></div> -->
-                      <% end %>
+                    <% end %>
                   </div>
                   <a class="left carousel-control" href="#thumbcarousel" role="button" data-slide="prev">
                     <span class="glyphicon glyphicon-chevron-left"></span>
