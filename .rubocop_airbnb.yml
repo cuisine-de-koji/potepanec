@@ -1,0 +1,6 @@
+require:
+  - rubocop-airbnb
+
+Airbnb/OptArgParameters:
+  Exclude:
+    - 'app/helpers/application_helper.rb'

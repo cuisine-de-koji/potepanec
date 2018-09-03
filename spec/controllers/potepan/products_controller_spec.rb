@@ -4,8 +4,9 @@ RSpec.describe Potepan::ProductsController, type: :controller do
   describe 'Get #show' do
     before do
       @product = create(:product)
-      get :show, params: {id: @product.id}
+      get :show, params: { id: @product.id }
     end
+
     it 'リクエストは200 OKとなること' do
       expect(response.status).to eq 200
     end
