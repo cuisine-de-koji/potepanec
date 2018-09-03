@@ -2,10 +2,13 @@ inherit_from:
   - .rubocop_todo.yml
   - .rubocop_airbnb.yml
 
+
 Rails:
   Enabled: true
 
+
 AllCops:
+  #除外する
   Exclude:
     - 'db/**/*'
     - 'config/**/*'
@@ -18,3 +21,7 @@ AllCops:
 Airbnb/OptArgParameters:
   Exclude:
     - 'app/helpers/application_helper.rb'
+
+#日本語でのコメントを許可
+AsciiComments:
+  Enabled: false
