@@ -1,5 +1,4 @@
 <% provide(:title, @product.name) %>
-<div class="main-wrapper">
 
   <!-- LIGHT SECTION -->
   <section class="lightSection clearfix pageHeader">
@@ -15,7 +14,7 @@
             <li>
               <a href="index.html">Home</a>
             </li>
-            <li class="active">Single Product</li>
+            <li class="active"><%= @product.name %></li>
           </ol>
         </div>
       </div>
@@ -195,5 +194,4 @@
     </div>
   </section>
 
-</div>
 <%= render 'layouts/product_quick_view_model' %>
