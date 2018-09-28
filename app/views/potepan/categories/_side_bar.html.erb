@@ -10,7 +10,11 @@
               <a href="javascript:;" data-toggle="collapse" data-target="#<%= root_taxon.permalink %>"><%= root_taxon.name %><i class="fa fa-plus"></i></a>
               <ul id="<%= root_taxon.permalink %>" class="collapse collapseItem">
                 <% root_taxon.leaves.each do |taxon| %>
-                  <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i><%= taxon.name %> <span>(<%= taxon.products.count %>)</span></a></li>
+                  <li>
+                    <%= link_to potepan_category_path(taxon.id) do %>
+                      <i class="fa fa-caret-right" aria-hidden="true"></i><%= taxon.name %> <span>(<%= taxon.products.count %>)</span>
+                    <% end %>
+                  </li>
                 <% end %>
               </ul>
             <% end %>

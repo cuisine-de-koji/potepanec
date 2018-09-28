@@ -6,10 +6,11 @@
       <%= render 'layouts/header' %>
       <%= yield %>
       <%= render 'layouts/footer' %>
+      <%= render 'layouts/copy_right' %>
     </div>
     <%= render 'layouts/login_modal' %>
     <%= render 'layouts/sign_up_modal' %>
     <%= javascript_include_tag 'application' %>
-    <%= render 'layouts/product_quick_view_model'%>
+    <%= render 'layouts/product_quick_view_modal'%>
   </body>
 </html>

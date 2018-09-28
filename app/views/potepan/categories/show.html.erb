@@ -1,5 +1,4 @@
-<div class="main-wrapper">
-
+<% provide(:title, @taxon.name) %>
 <!-- LIGHT SECTION -->
 <section class="lightSection clearfix pageHeader">
   <div class="container">
@@ -62,9 +61,9 @@
                   </div>
                 </div>
                 <div class="productCaption clearfix">
-                  <a href="single_product.html">
+                  <%= link_to potepan_product_path(product.id) do %>
                     <h5><%= product.name %></h5>
-                  </a>
+                  <% end %>
                   <h3><%= product.price %></h3>
                 </div>
               </div>
@@ -127,5 +126,3 @@
     </div>
   </div>
 </section>
-
-</div>
