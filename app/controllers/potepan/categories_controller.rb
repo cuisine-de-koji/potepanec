@@ -5,13 +5,13 @@ class Potepan::CategoriesController < ApplicationController
     @roots_taxon = Spree::Taxon.roots
   end
 
-    private
-      def show_products(taxon)
-        if taxon.root?
-          taxon.leaves.includes(:products).map(&:products).flatten.compact.uniq
-        else
-          taxon.products
-        end
-      end
+  private
 
+  def show_products(taxon)
+    if taxon.root?
+      taxon.leaves.includes(:products).map(&:products).flatten.compact.uniq
+    else
+      taxon.products
+    end
+  end
 end
