@@ -1,0 +1,24 @@
+<head>
+  <!-- SITE TITTLE -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title><%= full_title(yield(:title)) %></title>
+  <%= csrf_meta_tags %>
+
+  <%= favicon_link_tag() %>
+
+  <!-- PLUGINS CSS STYLE -->
+  <%= stylesheet_link_tag "application", :media => "all" %>
+
+  <!-- GOOGLE FONT -->
+  <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Oxygen:400,300,700', :media => "all" %>
+
+  <!-- CUSTOM CSS -->
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+  <%= render 'layouts/shim.html.erb' %>
+</head>

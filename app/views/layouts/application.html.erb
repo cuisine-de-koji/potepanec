@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Potepanec</title>
-    <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
-  </head>
-
+<html lang="en">
+  <%= render 'layouts/head' %>
   <body>
-    <%= yield %>
+    <div class="main-wrapper">
+      <%= render 'layouts/header' %>
+      <%= yield %>
+      <%= render 'layouts/footer' %>
+      <%= render 'layouts/copy_right' %>
+    </div>
+    <%= render 'layouts/login_modal' %>
+    <%= render 'layouts/sign_up_modal' %>
+    <%= javascript_include_tag 'application' %>
   </body>
 </html>
