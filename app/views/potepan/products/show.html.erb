@@ -55,7 +55,11 @@
           </div>
           <div class="media-body">
             <ul class="list-inline">
-              <li><a href="product_grid_left_sidebar.html"><i class="fa fa-reply" aria-hidden="true"></i>一覧ページへ戻る</a></li>
+              <li>
+                <%= link_to potepan_category_path(@product.taxon_ids.first) do %>
+                  <i class="fa fa-reply" aria-hidden="true"></i>一覧ページへ戻る
+                <% end %>
+              </li>
               <!-- <li><a href="#"><i class="fa fa-plus" aria-hidden="true"></i>Share This</a></li> -->
             </ul>
             <h2><%= @product.name %></h2>
@@ -195,4 +199,3 @@
 </section>
 
 <%= render 'shared/partners_logo' %>
-<%= render 'layouts/product_quick_view_model' %>
