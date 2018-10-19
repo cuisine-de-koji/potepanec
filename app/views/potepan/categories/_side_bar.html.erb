@@ -5,8 +5,8 @@
     <div class="panel-body">
       <div class="collapse navbar-collapse navbar-ex1-collapse navbar-side-collapse">
         <ul class="nav navbar-nav side-nav">
-          <li>
-            <% @roots_taxon.each do |root_taxon| %>
+          <% @roots_taxon.each do |root_taxon| %>
+            <li>
               <a href="javascript:;" data-toggle="collapse" data-target="#<%= root_taxon.permalink %>"><%= root_taxon.name %><i class="fa fa-plus"></i></a>
               <ul id="<%= root_taxon.permalink %>" class="collapse collapseItem">
                 <% root_taxon.leaves.each do |taxon| %>
@@ -17,8 +17,8 @@
                   </li>
                 <% end %>
               </ul>
-            <% end %>
-          </li>
+            </li>
+          <% end %>
         </ul>
       </div>
     </div>
