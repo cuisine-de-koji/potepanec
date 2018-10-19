@@ -21,6 +21,10 @@ Airbnb/OptArgParameters:
   Exclude:
     - 'app/helpers/application_helper.rb'
 
+#MODEL_decorator.rbの使用を許可
+Airbnb/ModuleMethodInWrongFile:
+  Enabled: false
+
 #日本語でのコメントを許可
 AsciiComments:
   Enabled: false
