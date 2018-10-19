@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Potepan::CategoriesController, type: :controller do
-  describe '#show' do
+  describe 'Get #show' do
     let(:taxonomy) { create(:taxonomy) }
     let(:apple) do
       taxonomy.root.children.create(name: 'Apple', taxonomy: taxonomy)
@@ -21,7 +21,7 @@ RSpec.describe Potepan::CategoriesController, type: :controller do
       get :show, params: { id: apple.id }
     end
 
-    it 'responds successfully' do
+    it 'リクエストがsuccessとなること' do
       expect(response).to be_success
     end
 
