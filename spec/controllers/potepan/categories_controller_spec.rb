@@ -6,7 +6,9 @@ RSpec.describe Potepan::CategoriesController, type: :controller do
     let(:apple) do
       taxonomy.root.children.create(name: 'Apple', taxonomy: taxonomy)
     end
-    #上記の様な形で:apple(spree_taxon)を作るのはtaxon_decoratorの#show_productsで'leaves'メソッドを使用しているから。:appleがrootノードになってしまうと、if分岐で'leaves'が働き、自身(:apple)を除いたproductsを返すので戻り値がnilになる。
+    # 上記の様な形で:apple(spree_taxon)を作るのはtaxon_decorator#show_productsで'leaves'メソッドを使用しているから。
+    # :appleがrootノードになってしまうと、if分岐で'leaves'が働き、自身(:apple)を除いたproductsを返すので戻り値がnilになる。
+    # solidusのデフォルトfactoryが:taxonにおいて'parent_id = nil'を返すのが原因。
     let(:products_list) do
       %w(air pro mini).map do |name|
         create(:product, name: "#{name}") do |product|

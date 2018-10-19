@@ -22,12 +22,23 @@
     </div>
   </div>
 </section>
-
 <!-- MAIN CONTENT SECTION -->
 <section class="mainContent clearfix productsContent">
   <div class="container">
     <div class="row">
-      <%= render partial: 'potepan/categories/side_bar', local: { products: @products } %>
+      <div class="col-md-3 col-sm-4 col-xs-12 sideBar">
+        <div class="panel panel-default">
+          <div class="panel-heading">商品カテゴリー</div>
+          <div class="panel-body">
+            <div class="collapse navbar-collapse navbar-ex1-collapse navbar-side-collapse">
+              <ul class="nav navbar-nav side-nav">
+                <%= render partial: 'potepan/categories/side_bar', collection: @roots_taxon, as: :root_taxon %>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <%= render partial: 'potepan/categories/search_filter' %>
+      </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
         <div class="row filterArea">
           <div class="col-xs-6">
@@ -47,28 +58,7 @@
           </div>
         </div>
         <div class="row">
-          <% @products.each do |product| %>
-            <div class="col-sm-4 col-xs-12">
-              <div class="productBox">
-                <div class="productImage clearfix">
-                  <%= image_tag product.display_image.attachment(:product), :alt => "products-img" %>
-                  <div class="productMasking">
-                    <ul class="list-inline btn-group" role="group">
-                      <li><a data-toggle="modal" href=".login-modal" class="btn btn-default"><i class="fa fa-heart"></i></a></li>
-                      <li><a href="cart_page.html" class="btn btn-default"><i class="fa fa-shopping-cart"></i></a></li>
-                      <li><a class="btn btn-default" data-toggle="modal" href=".quick-view" ><i class="fa fa-eye"></i></a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="productCaption clearfix">
-                  <%= link_to potepan_product_path(product.id) do %>
-                    <h5><%= product.name %></h5>
-                  <% end %>
-                  <h3><%= product.price %></h3>
-                </div>
-              </div>
-            </div>
-          <% end %>
+          <%= render partial: 'potepan/categories/product', collection: @products, as: :product %>
         </div>
       </div>
     </div>
