@@ -30,7 +30,6 @@ RSpec.describe Potepan::CategoriesController, type: :controller do
     end
 
     it '@taxonに属する製品が正しく割り当てられている' do
-      # target_table = table_products.first
       expect(assigns(:products)).to eq products_list
     end
   end
