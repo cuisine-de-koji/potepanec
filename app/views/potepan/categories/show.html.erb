@@ -5,7 +5,9 @@
     <div class="row">
       <div class="col-xs-6">
         <div class="page-title">
-          <h2><%= @taxon.name %></h2>
+          <h2>
+            <%= @taxon.name %>
+          </h2>
         </div>
       </div>
       <div class="col-xs-6">
@@ -16,7 +18,9 @@
           <li>
             <a href="#">shop</a>
           </li>
-          <li class="active"><%= @taxon.name %></li>
+          <li class="active">
+            <%= @taxon.name %>
+          </li>
         </ol>
       </div>
     </div>
@@ -32,7 +36,7 @@
           <div class="panel-body">
             <div class="collapse navbar-collapse navbar-ex1-collapse navbar-side-collapse">
               <ul class="nav navbar-nav side-nav">
-                <%= render partial: 'potepan/categories/side_bar', collection: @roots_taxon, as: :root_taxon %>
+                <%= render partial: 'potepan/categories/side_bar', collection: @root_taxons, as: :root_taxon %>
               </ul>
             </div>
           </div>
