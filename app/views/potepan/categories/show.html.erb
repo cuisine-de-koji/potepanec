@@ -1,27 +1,5 @@
 <% provide(:title, @taxon.name) %>
-<!-- LIGHT SECTION -->
-<section class="lightSection clearfix pageHeader">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-6">
-        <div class="page-title">
-          <h2><%= @taxon.name %></h2>
-        </div>
-      </div>
-      <div class="col-xs-6">
-        <ol class="breadcrumb pull-right">
-          <li>
-            <a href="index.html">Home</a>
-          </li>
-          <li>
-            <a href="#">shop</a>
-          </li>
-          <li class="active"><%= @taxon.name %></li>
-        </ol>
-      </div>
-    </div>
-  </div>
-</section>
+<%= render partial: 'shared/light_section', locals: { title_and_breadcrumbs: @taxon.name } %>
 <!-- MAIN CONTENT SECTION -->
 <section class="mainContent clearfix productsContent">
   <div class="container">
@@ -32,7 +10,7 @@
           <div class="panel-body">
             <div class="collapse navbar-collapse navbar-ex1-collapse navbar-side-collapse">
               <ul class="nav navbar-nav side-nav">
-                <%= render partial: 'potepan/categories/side_bar', collection: @roots_taxon, as: :root_taxon %>
+                <%= render partial: 'potepan/categories/side_bar', collection: @root_taxons, as: :root_taxon %>
               </ul>
             </div>
           </div>
