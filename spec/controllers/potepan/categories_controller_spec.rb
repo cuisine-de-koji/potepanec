@@ -25,6 +25,10 @@ RSpec.describe Potepan::CategoriesController, type: :controller do
       expect(response).to be_success
     end
 
+    it ':showテンプレートが正しくrenderingされていること' do
+      expect(response).to render_template :show
+    end
+
     it '@taxonに適切なカテゴリーを割り当てること' do
       expect(assigns(:taxon)).to eq apple
     end
