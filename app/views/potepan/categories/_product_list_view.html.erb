@@ -1,0 +1,17 @@
+<div class="col-xs-12">
+  <div class="media">
+    <div class="media-left">
+      <%= image_tag product.display_image.attachment(:product), :alt => "products-img" %>
+      <span class="maskingImage"><a data-toggle="modal" href=".quick-view" class="btn viewBtn">Quick View</a></span>
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading"><a href="single-product.html"><%= product.name %></a></h4>
+      <p><%= product.description %></p>
+      <h3><%= product.display_price %></h3>
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target=".login-modal"><i class="fa fa-heart" aria-hidden="true"></i></button>
+        <button type="button" class="btn btn-default" onclick="location.href='cart-page.html';"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
