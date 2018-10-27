@@ -30,16 +30,8 @@
           </div>
           <div class="col-xs-6">
             <div class="btn-group pull-right" role="group">
-
-              <button type="button" class="btn btn-default <%= @category_view == "grid" ? "active" : "" %>" onclick="window.location.href='<%= potepan_category_path(@taxon.id, view: 'grid') %>'"><i class="fa fa-th" aria-hidden="true"></i><span>Grid</span></button>
-
-              <button type="button" class="btn btn-default <%= @category_view == " list" ? "active" : "" %>" onclick="window.location.href='<%= potepan_category_path(@taxon.id, view: 'list') %>'"><i class="fa fa-th" aria-hidden="true"></i><span>List</span></button>
-
-
-              <%= content_tag :button, class: "btn btn-default #{@category_view == "list" ? "active" : ""}", onclick: "window.location.href='#{potepan_category_path(@taxon.id, view: 'list')}'" do %>
-                <i class="fa fa-th-list" aria-hidden="true"></i><span>List</span></button>
-              <% end %>
-
+              <button type="button" class="btn btn-default <%= @category_view == "grid" ? "active" : "" %>" onclick="window.location.href='<%= potepan_category_path(@taxon.id, view: "grid") %>'"><i class="fa fa-th" aria-hidden="true"></i><span>Grid</span></button>
+              <button type="button" class="btn btn-default <%= @category_view == "list" ? "active" : "" %>" onclick="window.location.href='<%= potepan_category_path(@taxon.id, view: "list") %>'"><i class="fa fa-th" aria-hidden="true"></i><span>List</span></button>
             </div>
           </div>
         </div>
