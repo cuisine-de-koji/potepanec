@@ -25,12 +25,15 @@ RSpec.describe Potepan::CategoriesController, type: :controller do
       expect(response).to be_success
     end
 
+    it ':showテンプレートが正しくrenderingされていること' do
+      expect(response).to render_template :show
+    end
+
     it '@taxonに適切なカテゴリーを割り当てること' do
       expect(assigns(:taxon)).to eq apple
     end
 
     it '@taxonに属する製品が正しく割り当てられている' do
-      # target_table = table_products.first
       expect(assigns(:products)).to eq products_list
     end
   end

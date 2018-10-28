@@ -1,27 +1,5 @@
 <% provide(:title, @taxon.name) %>
-<!-- LIGHT SECTION -->
-<section class="lightSection clearfix pageHeader">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-6">
-        <div class="page-title">
-          <h2><%= @taxon.name %></h2>
-        </div>
-      </div>
-      <div class="col-xs-6">
-        <ol class="breadcrumb pull-right">
-          <li>
-            <a href="index.html">Home</a>
-          </li>
-          <li>
-            <a href="#">shop</a>
-          </li>
-          <li class="active"><%= @taxon.name %></li>
-        </ol>
-      </div>
-    </div>
-  </div>
-</section>
+<%= render partial: 'shared/light_section', locals: { title_or_breadcrumbs: @taxon.name } %>
 <!-- MAIN CONTENT SECTION -->
 <section class="mainContent clearfix productsContent">
   <div class="container">
@@ -32,7 +10,7 @@
           <div class="panel-body">
             <div class="collapse navbar-collapse navbar-ex1-collapse navbar-side-collapse">
               <ul class="nav navbar-nav side-nav">
-                <%= render partial: 'potepan/categories/side_bar', collection: @roots_taxon, as: :root_taxon %>
+                <%= render partial: 'potepan/categories/categories_filter', collection: @root_taxons, as: :root_taxon %>
               </ul>
             </div>
           </div>
@@ -52,14 +30,20 @@
           </div>
           <div class="col-xs-6">
             <div class="btn-group pull-right" role="group">
-              <button type="button" class="btn btn-default active" onclick="window.location.href='product_grid_left_sidebar.html'"><i class="fa fa-th" aria-hidden="true"></i><span>Grid</span></button>
-              <button type="button" class="btn btn-default" onclick="window.location.href='product_list_left_sidebar.html'"><i class="fa fa-th-list" aria-hidden="true"></i><span>List</span></button>
+              <button type="button" class="btn btn-default <%= @category_view == "grid" ? "active" : "" %>" onclick="window.location.href='<%= potepan_category_path(@taxon.id, view: "grid") %>'"><i class="fa fa-th" aria-hidden="true"></i><span>Grid</span></button>
+              <button type="button" class="btn btn-default <%= @category_view == "list" ? "active" : "" %>" onclick="window.location.href='<%= potepan_category_path(@taxon.id, view: "list") %>'"><i class="fa fa-th" aria-hidden="true"></i><span>List</span></button>
             </div>
           </div>
         </div>
-        <div class="row">
-          <%= render partial: 'potepan/categories/product', collection: @products, as: :product %>
-        </div>
+        <% if @category_view == "grid" %>
+          <div class="row">
+            <%= render partial: 'potepan/categories/product_grid_view', collection: @products, as: :product %>
+          </div>
+        <% else %>
+          <div class="row productListSingle">
+            <%= render partial: 'potepan/categories/product_list_view', collection: @products, as: :product %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
