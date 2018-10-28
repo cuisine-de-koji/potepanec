@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "product pages", type: :feature do
   let(:root) { create :taxon }
+  # taxonsは配列にしないといけないので[]で囲む
   let(:product) { create :product, taxons: [root] }
 
   scenario "商品の内容が適切である" do
