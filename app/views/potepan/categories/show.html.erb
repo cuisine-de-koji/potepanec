@@ -10,12 +10,12 @@
           <div class="panel-body">
             <div class="collapse navbar-collapse navbar-ex1-collapse navbar-side-collapse">
               <ul class="nav navbar-nav side-nav">
-                <%= render partial: 'potepan/categories/categories_filter', collection: @root_taxons, as: :root_taxon %>
+                <%= render partial: 'categories_filter', collection: @root_taxons, as: :root_taxon %>
               </ul>
             </div>
           </div>
         </div>
-        <%= render partial: 'potepan/categories/search_filter' %>
+        <%= render partial: 'search_filter' %>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
         <div class="row filterArea">
@@ -36,7 +36,7 @@
           </div>
         </div>
         <div class="row">
-          <%= render partial: 'potepan/categories/product', collection: @products, as: :product %>
+          <%= render partial: 'product', collection: @products, as: :product %>
         </div>
       </div>
     </div>
