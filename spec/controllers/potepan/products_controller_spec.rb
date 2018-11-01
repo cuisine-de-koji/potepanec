@@ -35,7 +35,7 @@ RSpec.describe Potepan::ProductsController, type: :controller do
     end
 
     it "assigns @related_product" do
-      expect(assigns(:related_products)).to include(dinasors_list.second, dinasors_list.third)
+      expect(assigns(:related_products)).to match_array(dinasors_list - [dinasors_list.first])
     end
   end
 end

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "category pages", type: :feature do
   let(:root) { create :taxon }
-  # parentはawsome_nestedを使用している
+  # parentはawesome_nested_listを使用している
   let(:child) { create :taxon, parent: root }
   let(:root_products) { create_list :product, 3, taxons: [root] }
   let(:child_products) { create_list :product, 4, taxons: [child] }
@@ -24,7 +24,6 @@ RSpec.feature "category pages", type: :feature do
 
     scenario "click single_product" do
       visit potepan_product_path(root_products.first.id)
-
       expect(page).to have_content root_products.first.name
       expect(page).to have_current_path(potepan_product_path(root_products.first.id))
     end
@@ -47,7 +46,6 @@ RSpec.feature "category pages", type: :feature do
 
     scenario "click single_product" do
       visit potepan_product_path(child_products.first.id)
-
       expect(page).to have_content child_products.first.name
       expect(page).to have_current_path(potepan_product_path(child_products.first.id))
     end
