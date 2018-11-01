@@ -82,10 +82,18 @@ RSpec.feature "category pages", type: :feature do
       scenario "get ':id?view=grid'" do
         visit potepan_category_path(child.id, view: :grid)
         expect(page).to have_current_path(potepan_category_path(child.id, view: :grid))
+        expect(page).to have_selector 'h2', text: child.name
+        expect(page).to have_selector 'h5', text: other_products.first.name
+        expect(page).to have_selector 'h5', text: other_products.second.name
+        expect(page).to have_selector 'h5', text: other_products.third.name
       end
       scenario "get ':id?view=list'" do
         visit potepan_category_path(child.id, view: :list)
         expect(page).to have_current_path(potepan_category_path(child.id, view: :list))
+        expect(page).to have_selector 'h2', text: child.name
+        expect(page).to have_selector 'h4', text: other_products.first.name
+        expect(page).to have_selector 'h4', text: other_products.second.name
+        expect(page).to have_selector 'h4', text: other_products.third.name
       end
     end
   end
