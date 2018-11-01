@@ -15,7 +15,7 @@
             </div>
           </div>
         </div>
-        <%= render partial: 'potepan/categories/search_filter' %>
+        <%= render partial: 'search_filter' %>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
         <div class="row filterArea">
@@ -41,7 +41,7 @@
           </div>
         <% else %>
           <div class="row productListSingle">
-            <%= render partial: 'product_list_view', collection: @products, as: :product %>
+            <%= render partiagil: 'product_list_view', collection: @products, as: :product %>
           </div>
         <% end %>
       </div>
