@@ -30,8 +30,12 @@
           </div>
           <div class="col-xs-6">
             <div class="btn-group pull-right" role="group">
-              <button type="button" class="btn btn-default <%= "active" if @category_view == "grid" %>" onclick="window.location.href='<%= potepan_category_path(@taxon.id, view: "grid") %>'"><i class="fa fa-th" aria-hidden="true"></i><span>Grid</span></button>
-              <button type="button" class="btn btn-default <%= "active" if @category_view == "list" %>" onclick="window.location.href='<%= potepan_category_path(@taxon.id, view: "list") %>'"><i class="fa fa-th" aria-hidden="true"></i><span>List</span></button>
+              <%= link_to potepan_category_path(@taxon.id, view: "grid"), class: if @category_view == "grid" then "btn btn-default active" elsif @category_view == "list" then "btn btn-default" else "btn btn-default active" end do %>
+                <i class="fa fa-th" aria-hidden="true"></i><span>Grid</span>
+              <% end %>
+              <%= link_to potepan_category_path(@taxon.id, view: "list"), class: @category_view == "list" ? "btn btn-default active" : "btn btn-default" do %>
+                <i class="fa fa-th" aria-hidden="true"></i><span>List</span>
+              <% end %>
             </div>
           </div>
         </div>
@@ -41,7 +45,7 @@
           </div>
         <% else %>
           <div class="row productListSingle">
-            <%= render partiagil: 'product_list_view', collection: @products, as: :product %>
+            <%= render partial: 'product_list_view', collection: @products, as: :product %>
           </div>
         <% end %>
       </div>
