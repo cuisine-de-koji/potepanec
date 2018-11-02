@@ -26,7 +26,6 @@ RSpec.feature "category pages", type: :feature do
 
       scenario "click single_product" do
         visit potepan_product_path(root_products.first.id)
-
         expect(page).to have_content root_products.first.name
         expect(page).to have_current_path(potepan_product_path(root_products.first.id))
       end
