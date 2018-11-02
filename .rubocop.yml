@@ -28,3 +28,6 @@ Airbnb/ModuleMethodInWrongFile:
 # 日本語でのコメントを許可
 AsciiComments:
   Enabled: false
+
+Metrics/LineLength:
+  Enabled: false

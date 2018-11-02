@@ -4,8 +4,8 @@ class Potepan::ProductsController < ApplicationController
     @product = Spree::Product.find(params[:id])
     @images = @product.images
     @taxons_product_belong = @product.taxons
-    @related_products = @taxons_product_belong.includes_price_and_images.
-      map(&:products).flatten.compact.uniq.
-      reject { |product| product.id == @product.id }.sample(RELATED_PRODUCTS_NUMS)
+    @related_products = Spree::Product.joins(:taxons).
+      includes_price_and_images.self_and_descendants_taxons(@taxons_product_belong).
+      reject_self(@product).uniq.sample(RELATED_PRODUCTS_NUMS)
   end
 end
