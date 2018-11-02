@@ -5,7 +5,9 @@
       <span class="maskingImage"><a data-toggle="modal" href=".quick-view" class="btn viewBtn">Quick View</a></span>
     </div>
     <div class="media-body">
-      <h4 class="media-heading"><a href="single-product.html"><%= product.name %></a></h4>
+      <%= link_to potepan_product_path(product.id) do %>
+        <h4 class="media-heading"><%= product.name %></h4>
+      <% end %>
       <p><%= product.description %></p>
       <h3><%= product.display_price %></h3>
       <div class="btn-group" role="group">

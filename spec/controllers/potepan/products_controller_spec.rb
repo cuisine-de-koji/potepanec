@@ -30,8 +30,12 @@ RSpec.describe Potepan::ProductsController, type: :controller do
       expect(assigns(:product)).to eq dinasors_list.first
     end
 
+    it "assigns @taxons_product_belong" do
+      expect(assigns(:taxons_product_belong)).to eq dinasors_list.first.taxons
+    end
+
     it "assigns @related_product" do
-      expect(assigns(:related_products)).to match_array dinasors_list
+      expect(assigns(:related_products)).to match_array(dinasors_list - [dinasors_list.first])
     end
   end
 end
