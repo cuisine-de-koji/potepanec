@@ -3,8 +3,10 @@ require 'rails_helper'
 RSpec.describe Potepan::CategoriesController, type: :controller do
   describe 'Get #show' do
     let(:taxonomy) { create(:taxonomy, name: "hoge") }
-    let(:root_taxons_test) { Spree::Taxon.roots }
     let(:apple) { taxonomy.root.children.create(name: 'Apple', taxonomy: taxonomy) }
+    let(:apple) do
+      taxonomy.root.children.create(name: 'Apple', taxonomy: taxonomy)
+    end
     # 上記の様な形で:apple(spree_taxon)を作るのはtaxon_decorator#show_productsで'leaves'メソッドを使用しているから。
     # :appleがrootノードになってしまうと、if分岐で'leaves'が働き、自身(:apple)を除いたproductsを返すので戻り値がnilになる。
     # solidusのデフォルトfactoryが:taxonにおいて'parent_id = nil'を返すのが原因。
@@ -37,7 +39,7 @@ RSpec.describe Potepan::CategoriesController, type: :controller do
     end
 
     it '@root_taxonsに適切なtaxonが割り当てられている' do
-      expect(assigns(:root_taxons)).to eq root_taxons_test
+      expect(assigns(:root_taxons)).to eq Spree::Taxon.roots
     end
   end
 end
