@@ -39,11 +39,7 @@
             </div>
           </div>
         </div>
-        <% if @category_view == "grid" %>
-          <div class="row">
-            <%= render partial: 'product_grid_view', collection: @products, as: :product %>
-          </div>
-        <% elsif @category_view == "list" %>
+        <% if @category_view == "list" %>
           <div class="row productListSingle">
             <%= render partial: 'product_list_view', collection: @products, as: :product %>
           </div>

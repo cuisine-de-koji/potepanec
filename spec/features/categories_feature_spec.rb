@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.feature "category pages", type: :feature do
-  let(:root) { create :taxon }
+  given(:root) { create :taxon }
   # parentはawesome_nested_listを使用している
-  let(:child) { create :taxon, parent: root }
-  let(:root_products) { create_list :product, 3, taxons: [root] }
-  let(:child_products) { create_list :product, 4, taxons: [child] }
-  let!(:other_products) { create_list :product, 3, taxons: [child] }
+  given(:child) { create :taxon, parent: root }
+  given(:root_products) { create_list :product, 3, taxons: [root] }
+  given(:child_products) { create_list :product, 4, taxons: [child] }
+  given!(:other_products) { create_list :product, 3, taxons: [child] }
 
   feature "taxonに属するproductsの表示が適切か" do
     context "taxonがroot(parent_idがnil)の場合" do
