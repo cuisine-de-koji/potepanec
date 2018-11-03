@@ -38,7 +38,7 @@ RSpec.describe Potepan::ProductsController, type: :controller do
       expect(assigns(:related_products)).to match_array(dinasors_list - [dinasors_list.first])
     end
 
-    it "関連商品が一つもない商品の場合 @related_productに何も入らな(空の配列になる)こと " do
+    it "関連商品が一つもない商品の場合 @related_productに何も入らない(空の配列になる)こと" do
       get :show, params: { id: lonely_product.id }
       expect(assigns(:related_products)).to eq []
     end
