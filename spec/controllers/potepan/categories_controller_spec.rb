@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Potepan::CategoriesController, type: :controller do
   describe 'Get #show' do
     let(:taxonomy) { create(:taxonomy, name: "hoge") }
-    let(:root_taxons_test) { Spree::Taxon.roots }
     let(:apple) do
       taxonomy.root.children.create(name: 'Apple', taxonomy: taxonomy)
     end
@@ -39,7 +38,7 @@ RSpec.describe Potepan::CategoriesController, type: :controller do
     end
 
     it '@root_taxonsに適切なtaxonが割り当てられている' do
-      expect(assigns(:root_taxons)).to eq root_taxons_test
+      expect(assigns(:root_taxons)).to eq Spree::Taxon.roots
     end
   end
 end
