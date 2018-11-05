@@ -10,6 +10,8 @@
     </div>
     <%= render 'layouts/login_modal' %>
     <%= render 'layouts/sign_up_modal' %>
+    <%= render 'layouts/product_quick_view_modal' %>
+    <%= debug(params) if Rails.env.development? %>
     <%= javascript_include_tag 'application' %>
   </body>
 </html>

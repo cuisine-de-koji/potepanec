@@ -1,26 +1,5 @@
 <% provide(:title, @product.name) %>
-
-<!-- LIGHT SECTION -->
-<section class="lightSection clearfix pageHeader">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-6">
-        <div class="page-title">
-          <h2><%= @product.name %></h2>
-        </div>
-      </div>
-      <div class="col-xs-6">
-        <ol class="breadcrumb pull-right">
-          <li>
-            <a href="index.html">Home</a>
-          </li>
-          <li class="active"><%= @product.name %></li>
-        </ol>
-      </div>
-    </div>
-  </div>
-</section>
-
+<%= render partial: 'shared/light_section', locals: { title_and_breadcrumbs: @product.name } %>
 <!-- MAIN CONTENT SECTION -->
 <section class="mainContent clearfix">
   <div class="container">
@@ -55,7 +34,11 @@
           </div>
           <div class="media-body">
             <ul class="list-inline">
-              <li><a href="product_grid_left_sidebar.html"><i class="fa fa-reply" aria-hidden="true"></i>一覧ページへ戻る</a></li>
+              <li>
+                <%= link_to potepan_category_path(@product.taxon_ids.first) do %>
+                  <i class="fa fa-reply" aria-hidden="true"></i>一覧ページへ戻る
+                <% end %>
+              </li>
               <!-- <li><a href="#"><i class="fa fa-plus" aria-hidden="true"></i>Share This</a></li> -->
             </ul>
             <h2><%= @product.name %></h2>
@@ -194,4 +177,4 @@
   </div>
 </section>
 
-<%= render 'layouts/product_quick_view_model' %>
+<%= render 'shared/partners_logo' %>

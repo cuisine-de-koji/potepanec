@@ -2,18 +2,18 @@ require 'rails_helper'
 
 RSpec.describe Potepan::ProductsController, type: :controller do
   describe 'Get #show' do
-    let(:product) { create :product }
+    let(:konomi) { create :product }
 
     before do
-      get :show, params: { id: product.id }
+      get :show, params: { id: konomi.id }
     end
 
-    it 'リクエストは200 OKとなること' do
-      expect(response.status).to eq 200
+    it 'リクエストがsuccessとなること' do
+      expect(response).to be_success
     end
 
     it '@productに適切なプロダクトを割り当てること' do
-      expect(assigns(:product)).to eq product
+      expect(assigns(:product)).to eq konomi
     end
 
     it ':showテンプレートを表示すること' do
