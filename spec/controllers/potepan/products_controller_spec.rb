@@ -29,7 +29,7 @@ RSpec.describe Potepan::ProductsController, type: :controller do
     end
 
     it "assigns @related_product # 関連商品に現在の商品自身が含まれない" do
-      expect(assigns(:related_products)).not_to match dinasors_list.first
+      expect(assigns(:related_products)).not_to include dinasors_list.first
     end
 
     it "assigns @related_product # 関連商品の数が8個以下である" do
@@ -38,7 +38,7 @@ RSpec.describe Potepan::ProductsController, type: :controller do
 
     it "assigns @related_product # 関連商品が一つもない商品の場合@related_productに何も入らない(空の配列になる)" do
       get :show, params: { id: lonely_product.id }
-      expect(assigns(:related_products)).to eq []
+      expect(assigns(:related_products).empty?).to eq true
     end
   end
 end
