@@ -50,13 +50,13 @@ RSpec.feature "category pages", type: :feature do
         expect(page).to have_selector 'h5', text: child_products.third.name
       end
 
-      scenario "root_taxonの商品(child_products)が表示されていない" do
+      scenario "root_taxonの商品(root_products)が表示されていない" do
         visit potepan_category_path(child_taxon.id)
         expect(page).to have_selector 'h2', text: "Child"
         expect(page).not_to have_selector 'h5', text: root_products.first.name
       end
 
-      scenario "表示されるべきでないtaxon(color_taxon)の商品(red_bag)が表示されていない" do
+      scenario "表示されるべきでない関連のないtaxon(color_taxon)の商品(red_bag)が表示されていない" do
         visit potepan_category_path(child_taxon.id)
         expect(page).to have_selector 'h2', text: "Child"
         expect(page).not_to have_selector 'h5', text: "Red Bag"
@@ -64,7 +64,7 @@ RSpec.feature "category pages", type: :feature do
 
       scenario "click single_product" do
         visit potepan_product_path(child_products.first.id)
-        expect(page).to have_content child_products.first.name
+        expect(page).to have_selector 'h2', text: child_products.first.name
         expect(page).to have_current_path(potepan_product_path(child_products.first.id))
       end
     end
