@@ -10,10 +10,10 @@ RSpec.feature "product pages", type: :feature do
   feature "商品詳細の表示" do
     scenario "商品(:pink_bag)の内容が適切に表示されている" do
       visit potepan_product_path(pink_bag.id)
-      expect(page).to have_content "一覧ページへ戻る"
-      expect(page).to have_content pink_bag.name
-      expect(page).to have_content pink_bag.price
-      expect(page).to have_content pink_bag.description
+      expect(page).to have_selector 'a', text: "一覧ページへ戻る"
+      expect(page).to have_selector 'h2', text: pink_bag.name
+      expect(page).to have_selector 'h3', text: pink_bag.price
+      expect(page).to have_selector 'p', text: pink_bag.description
     end
 
     scenario "click '一覧ページへ戻る'が正常に動く" do
@@ -33,19 +33,22 @@ RSpec.feature "product pages", type: :feature do
     context "関連商品がある場合" do
       scenario "cute_taxonに属する関連商品が適切に表示されている" do
         visit potepan_product_path(pink_bag.id)
-        expect(page).to have_content pink_bag.name
+        expect(page).to have_selector 'h2', text: pink_bag.name
         expect(page).to have_selector 'h5', text: "KAWAII_KABAN"
       end
 
       scenario "関連商品から、現在の商品詳細に表示されている商品自身（Pink Bag'）が省かれている" do
         visit potepan_product_path(pink_bag.id)
         expect(page).to have_selector 'h2', text: pink_bag.name
-        expect(page).not_to have_selector 'h5', text: "Pink Bag"
+        expect(page).not_to have_selector 'h5', text: pink_bag.name
+        expect(page).to have_selector 'h5', text: other_cute_bags.first.name
       end
 
       scenario "cute_taxonに属する商品の数が(テストDBでは11個あるが)8個のみ表示されている" do
         visit potepan_product_path(pink_bag.id)
-        expect(page).to have_content pink_bag.name
+        expect(page).to have_selector 'h2', text: pink_bag.name
+        expect(page).not_to have_selector 'h5', text: pink_bag.name
+        expect(page).to have_selector 'h5', text: other_cute_bags.first.name, count: 8
         expect(page).to have_css '.productBox', count: 8
       end
     end
@@ -53,8 +56,8 @@ RSpec.feature "product pages", type: :feature do
     context "関連商品がない場合" do
       scenario "関連商品に何も表示されない" do
         visit potepan_product_path(lonely_bag.id)
-        expect(page).to have_selector 'h2', text: "Lonely Bag"
-        expect(page).not_to have_content "Pink Bag"
+        expect(page).to have_selector 'h2', text: lonely_bag.name
+        expect(page).not_to have_content pink_bag.name
         expect(page).not_to have_css '.productBox'
       end
     end
