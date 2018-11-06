@@ -10,10 +10,6 @@ RSpec.describe Potepan::ProductsController, type: :controller do
   end
 
   describe 'GET #show' do
-    before do
-      get :show, params: { id: dinasors_list.first.id }
-    end
-
     it "returns http success" do
       expect(response).to have_http_status(:success)
     end
@@ -24,6 +20,9 @@ RSpec.describe Potepan::ProductsController, type: :controller do
   end
 
   describe '@related_products' do
+    let(:lonely_taxon) { create :taxon, name: "lonely_taxon" }
+    let(:lonely_product) { create :product, name: "lonely_product", taxons: [lonely_taxon] }
+
     context "関連商品がある場合" do
       it "assigns @product" do
         expect(assigns(:product)).to eq dinasors_list.first
@@ -39,9 +38,6 @@ RSpec.describe Potepan::ProductsController, type: :controller do
     end
 
     context "関連商品がない場合" do
-      let(:lonely_taxon) { create :taxon, name: "lonely_taxon" }
-      let(:lonely_product) { create :product, name: "lonely_product", taxons: [lonely_taxon] }
-
       it "assigns @related_product # @related_productに何も入らない(空の配列になる)" do
         get :show, params: { id: lonely_product.id }
         expect(assigns(:related_products)).to be_empty
