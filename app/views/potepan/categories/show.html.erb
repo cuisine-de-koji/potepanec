@@ -1,5 +1,5 @@
 <% provide(:title, @taxon.name) %>
-<%= render partial: 'shared/light_section', locals: { title_or_breadcrumbs: @taxon.name } %>
+<%= render 'shared/light_section', title_or_breadcrumbs: @taxon.name %>
 <!-- MAIN CONTENT SECTION -->
 <section class="mainContent clearfix productsContent">
   <div class="container">
