@@ -20,8 +20,8 @@ RSpec.describe Potepan::ProductsController, type: :controller do
   end
 
   describe '@related_products' do
-    let(:lonely_taxon) { create :taxon, name: "lonely_taxon" }
-    let(:lonely_product) { create :product, name: "lonely_product", taxons: [lonely_taxon] }
+    let(:dog) { categories.root.children.create(name: 'Dog', taxonomy: categories) }
+    let(:cute_dog) { create :product, name: "Cute_dog", taxons: [dog] }
 
     context "関連商品がある場合" do
       it "assigns @product" do
@@ -39,7 +39,7 @@ RSpec.describe Potepan::ProductsController, type: :controller do
 
     context "関連商品がない場合" do
       it "assigns @related_product # @related_productに何も入らない(空の配列になる)" do
-        get :show, params: { id: lonely_product.id }
+        get :show, params: { id: cute_dog.id }
         expect(assigns(:related_products)).to be_empty
       end
     end
