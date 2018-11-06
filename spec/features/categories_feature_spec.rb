@@ -6,9 +6,11 @@ RSpec.feature "category pages", type: :feature do
   given(:child) { create :taxon, parent: root }
   given(:root_products) { create_list :product, 3, taxons: [root] }
   given(:child_products) { create_list :product, 4, taxons: [child] }
-  given!(:other_products) { create_list :product, 3, taxons: [child] }
 
-  feature "taxonに属するproductsの表示" do
+  feature "taxonに属するproductsの表示が適切か" do
+    given(:adult) { create :taxon, name: "Adult" }
+    given!(:lonely_product) { create :product, taxons: [adult] }
+
     context "taxonがroot(parent_idがnil)の場合" do
       scenario "カテゴリーに表示されるタイトル、商品群が適切である" do
         visit potepan_category_path(root_products.first.taxons.ids.first)
@@ -21,7 +23,7 @@ RSpec.feature "category pages", type: :feature do
       scenario "他のtaxonの商品が表示されていない" do
         visit potepan_category_path(root_products.first.taxons.ids.first)
         expect(page).to have_selector 'h2', text: root.name
-        expect(page).not_to have_selector 'h5', text: child_products.first.name
+        expect(page).not_to have_selector 'h5', text: lonely_product.name
       end
 
       scenario "click single_product" do
@@ -55,6 +57,8 @@ RSpec.feature "category pages", type: :feature do
   end
 
   feature "grid/listの切り替えが正しく動くか" do
+    given!(:other_products) { create_list :product, 3, taxons: [child] }
+
     context "ボタンを押したとき" do
       scenario "listボタンをクリックするとlist_viewに切り替わる" do
         visit potepan_category_path(child.id)
