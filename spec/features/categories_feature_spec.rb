@@ -8,7 +8,7 @@ RSpec.feature "category pages", type: :feature do
   given(:child_products) { create_list :product, 4, taxons: [child] }
   given!(:other_products) { create_list :product, 3, taxons: [child] }
 
-  feature "taxonに属するproductsの表示が適切か" do
+  feature "taxonに属するproductsの表示" do
     context "taxonがroot(parent_idがnil)の場合" do
       scenario "カテゴリーに表示されるタイトル、商品群が適切である" do
         visit potepan_category_path(root_products.first.taxons.ids.first)

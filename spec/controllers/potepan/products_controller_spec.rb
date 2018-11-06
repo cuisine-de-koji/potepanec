@@ -1,13 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe Potepan::ProductsController, type: :controller do
-  describe 'GET #show' do
-    let(:categories) { create(:taxonomy, name: 'Categories') }
-    let(:dinasor) { categories.root.children.create(name: 'Dinasor', taxonomy: categories) }
-    let(:dinasors_list) { create_list(:product, 8, taxons: [dinasor]) }
-    let(:lonely_taxon) { create :taxon, name: "lonely_taxon" }
-    let(:lonely_product) { create :product, name: "lonely_product", taxons: [lonely_taxon] }
+  let(:categories) { create(:taxonomy, name: 'Categories') }
+  let(:dinasor) { categories.root.children.create(name: 'Dinasor', taxonomy: categories) }
+  let(:dinasors_list) { create_list(:product, 8, taxons: [dinasor]) }
+  let(:lonely_taxon) { create :taxon, name: "lonely_taxon" }
+  let(:lonely_product) { create :product, name: "lonely_product", taxons: [lonely_taxon] }
 
+  before do
+    get :show, params: { id: dinasors_list.first.id }
+  end
+
+  describe 'GET #show' do
     before do
       get :show, params: { id: dinasors_list.first.id }
     end
@@ -19,26 +23,28 @@ RSpec.describe Potepan::ProductsController, type: :controller do
     it "renders show template" do
       expect(response).to render_template :show
     end
+  end
 
-    it "assigns @product" do
-      expect(assigns(:product)).to eq dinasors_list.first
+  describe '@related_products' do
+    context "関連商品がある場合" do
+      it "assigns @product" do
+        expect(assigns(:product)).to eq dinasors_list.first
+      end
+
+      it "assigns @related_product # 関連商品に現在の商品自身が含まれない" do
+        expect(assigns(:related_products)).not_to include dinasors_list.first
+      end
+
+      it "assigns @related_product # 関連商品の数が8個以下である" do
+        expect(assigns(:related_products).size).to be <= 8
+      end
     end
 
-    it "assigns @taxons_product_belong" do
-      expect(assigns(:taxons_product_belong)).to eq dinasors_list.first.taxons
-    end
-
-    it "assigns @related_product # 関連商品に現在の商品自身が含まれない" do
-      expect(assigns(:related_products)).not_to include dinasors_list.first
-    end
-
-    it "assigns @related_product # 関連商品の数が8個以下である" do
-      expect(assigns(:related_products).size).to be <= 8
-    end
-
-    it "assigns @related_product # 関連商品が一つもない商品の場合@related_productに何も入らない(空の配列になる)" do
-      get :show, params: { id: lonely_product.id }
-      expect(assigns(:related_products).empty?).to eq true
+    context "関連商品がない場合" do
+      it "assigns @related_product # @related_productに何も入らない(空の配列になる)" do
+        get :show, params: { id: lonely_product.id }
+        expect(assigns(:related_products)).to be_empty
+      end
     end
   end
 end
