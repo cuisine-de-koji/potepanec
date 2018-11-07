@@ -7,19 +7,21 @@ RSpec.feature "product pages", type: :feature do
   given(:cute_taxon) { taxonomy.root.children.create(name: "Cute") }
   given(:pink_bag) { create :product, name: "Pink Bag", taxons: [cute_taxon] }
 
+  background do
+    visit potepan_product_path(pink_bag.id)
+  end
+
   feature "商品詳細の表示" do
     scenario "商品(:pink_bag)の内容が適切に表示されている" do
-      visit potepan_product_path(pink_bag.id)
-      expect(page).to have_selector 'a', text: "一覧ページへ戻る"
-      expect(page).to have_selector 'h2', text: pink_bag.name
-      expect(page).to have_selector 'h3', text: pink_bag.price
-      expect(page).to have_selector 'p', text: pink_bag.description
+      expect(page).to have_selector 'div.singleProduct', text: "一覧ページへ戻る"
+      expect(page).to have_selector 'div.singleProduct', text: pink_bag.name
+      expect(page).to have_selector 'div.singleProduct', text: pink_bag.price
+      expect(page).to have_selector 'div.singleProduct', text: pink_bag.description
     end
 
     scenario "click '一覧ページへ戻る'が正常に動く" do
-      visit potepan_product_path(pink_bag.id)
       click_on "一覧ページへ戻る"
-      expect(page).to have_selector 'h2', text: cute_taxon.name
+      expect(page).to have_selector 'div.page-title', text: cute_taxon.name
       expect(page).to have_current_path(potepan_category_path(cute_taxon.id))
     end
   end
@@ -33,22 +35,22 @@ RSpec.feature "product pages", type: :feature do
     context "関連商品がある場合" do
       scenario "cute_taxonに属する関連商品が適切に表示されている" do
         visit potepan_product_path(pink_bag.id)
-        expect(page).to have_selector 'h2', text: pink_bag.name
-        expect(page).to have_selector 'h5', text: "KAWAII_KABAN"
+        expect(page).to have_selector 'div.singleProduct', text: pink_bag.name
+        expect(page).to have_selector 'div.productBox', text: "KAWAII_KABAN"
       end
 
       scenario "関連商品から、現在の商品詳細に表示されている商品自身（Pink Bag'）が省かれている" do
         visit potepan_product_path(pink_bag.id)
-        expect(page).to have_selector 'h2', text: pink_bag.name
-        expect(page).not_to have_selector 'h5', text: pink_bag.name
-        expect(page).to have_selector 'h5', text: other_cute_bags.first.name
+        expect(page).to have_selector 'div.singleProduct', text: pink_bag.name
+        expect(page).not_to have_selector 'div.productBox', text: pink_bag.name
+        expect(page).to have_selector 'div.productBox', text: other_cute_bags.first.name
       end
 
       scenario "cute_taxonに属する商品の数が(テストDBでは11個あるが)8個のみ表示されている" do
         visit potepan_product_path(pink_bag.id)
-        expect(page).to have_selector 'h2', text: pink_bag.name
-        expect(page).not_to have_selector 'h5', text: pink_bag.name
-        expect(page).to have_selector 'h5', text: other_cute_bags.first.name, count: 8
+        expect(page).to have_selector 'div.singleProduct', text: pink_bag.name
+        expect(page).not_to have_selector 'div.productBox', text: pink_bag.name
+        expect(page).to have_selector 'div.productBox', text: other_cute_bags.first.name, count: 8
         expect(page).to have_css '.productBox', count: 8
       end
     end
@@ -56,7 +58,7 @@ RSpec.feature "product pages", type: :feature do
     context "関連商品がない場合" do
       scenario "関連商品に何も表示されない" do
         visit potepan_product_path(lonely_bag.id)
-        expect(page).to have_selector 'h2', text: lonely_bag.name
+        expect(page).to have_selector 'div.singleProduct', text: lonely_bag.name
         expect(page).not_to have_content pink_bag.name
         expect(page).not_to have_css '.productBox'
       end
