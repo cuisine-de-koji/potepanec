@@ -6,7 +6,6 @@ class Potepan::ProductsController < ApplicationController
     @related_products = @product.
       related_products.
       includes_price_and_images.
-      reject_self(@product).
       limiting_items(RELATED_PRODUCTS_NUMS)
   end
 end
