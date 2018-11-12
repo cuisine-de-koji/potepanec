@@ -5,7 +5,6 @@ Spree::Product.class_eval do
   scope :reject_self,                 -> (self_product) { where.not(id: self_product.id) }
   scope :random_and_limitted_items,   -> (nums) { where(id: pluck(:id).sample(nums)) }
 
-  # インスタンスメソッド, classの前のselfを省略できないのはclass定義式との区別するため,taxon_idsの前のselfは省略可,
   def related_products
     self.class.joins(:taxons).
       where(spree_taxons: { id: taxon_ids }).distinct.
