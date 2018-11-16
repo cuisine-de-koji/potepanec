@@ -1,5 +1,5 @@
 <% provide(:title, @product.name) %>
-<%= render partial: 'shared/light_section', locals: { title_or_breadcrumbs: @product.name } %>
+<%= render 'shared/light_section', title_or_breadcrumbs: @product.name %>
 <!-- MAIN CONTENT SECTION -->
 <section class="mainContent clearfix">
   <div class="container">
@@ -101,7 +101,7 @@
           <h4>関連商品</h4>
         </div>
       </div>
-        <%= render partial: 'related_products', collection: @related_products, as: :related_product, locals: { product: @product } %>
+        <%= render partial: 'related_products', collection: @related_products, as: :related_product %>
     </div>
   </div>
 </section>
