@@ -89,20 +89,14 @@
               <li class="col-sm-3 col-xs-12">
                 <ul class="list-unstyled">
                   <li>Products Grid View</li>
-                  <li class="active"><a href="product_grid_left_sidebar.html">Products Sidebar Left</a></li>
-                  <li><a href="product-grid-right-sidebar.html">Products Sidebar Right</a></li>
-                  <li><a href="product-grid-3-col-filter.html">Products 3 Columns V1</a></li>
-                  <li><a href="product-grid-3-col.html">Products 3 Columns V2</a></li>
-                  <li><a href="product-grid-4-col.html">Products 4 Columns</a></li>
+                  <li class="active"><%= link_to "ALL PRODUCTS", potepan_category_path(Spree::Taxon.first.id, view: "grid") %></li>
                 </ul>
               </li>
               <li class="col-sm-3 col-xs-12">
                 <ul class="list-unstyled">
                   <li>Products List View</li>
-                  <li><a href="product_list_left_sidebar.html">Products Sidebar Left</a></li>
-                  <li><a href="product-list-right-sidebar.html">Products Sidebar Right</a></li>
+                  <li><%= link_to "ALL PRODUCTS", potepan_category_path(Spree::Taxon.first.id, view: "list") %></li>
                   <li class="listHeading">Others</li>
-                  <li><a href="single_product.html">Single Product</a></li>
                   <li><a href="cart_page.html">Cart Page</a></li>
                 </ul>
               </li>
@@ -124,9 +118,8 @@
           <li class="dropdown">
             <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">pages</a>
             <ul class="dropdown-menu dropdown-menu-left">
-              <li><a href="about_us.html">About Us</a></li>
-              <li><a href="signup.html">Register</a></li>
-              <li><a href="signup-login.html">Register or Login</a></li>
+              <li><%= link_to "About Us", potepan_about_us_path %></li>
+              <li><%= link_to "Register", "#" %></li>
               <li><a href="login.html">Login</a></li>
               <li><a href="lost-password.html">Password Recovery</a></li>
               <li><a href="privacy_policy.html">Privacy Policy</a></li>
