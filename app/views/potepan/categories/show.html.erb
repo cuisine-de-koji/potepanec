@@ -1,5 +1,5 @@
 <% provide(:title, @taxon.name) %>
-<%= render partial: 'shared/light_section', locals: { title_and_breadcrumbs: @taxon.name } %>
+<%= render 'shared/light_section', title_or_breadcrumbs: @taxon.name %>
 <!-- MAIN CONTENT SECTION -->
 <section class="mainContent clearfix productsContent">
   <div class="container">
@@ -30,14 +30,24 @@
           </div>
           <div class="col-xs-6">
             <div class="btn-group pull-right" role="group">
-              <button type="button" class="btn btn-default active" onclick="window.location.href='product_grid_left_sidebar.html'"><i class="fa fa-th" aria-hidden="true"></i><span>Grid</span></button>
-              <button type="button" class="btn btn-default" onclick="window.location.href='product_list_left_sidebar.html'"><i class="fa fa-th-list" aria-hidden="true"></i><span>List</span></button>
+              <%= link_to potepan_category_path(@taxon.id, view: "grid"), class: @category_view == "list" ? "btn btn-default" : "btn btn-default active" do %>
+                <i class="fa fa-th" aria-hidden="true"></i><span>Grid</span>
+              <% end %>
+              <%= link_to potepan_category_path(@taxon.id, view: "list"), class: @category_view == "list" ? "btn btn-default active" : "btn btn-default" do %>
+                <i class="fa fa-th-list" aria-hidden="true"></i><span>List</span>
+              <% end %>
             </div>
           </div>
         </div>
-        <div class="row">
-          <%= render partial: 'product', collection: @products, as: :product %>
-        </div>
+        <% if @category_view == "list" %>
+          <div class="row productListSingle">
+            <%= render partial: 'product_list_view', collection: @products, as: :product %>
+          </div>
+        <% else %>
+          <div class="row">
+            <%= render partial: 'product_grid_view', collection: @products, as: :product %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

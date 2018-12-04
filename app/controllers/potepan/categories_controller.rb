@@ -1,8 +1,8 @@
 class Potepan::CategoriesController < ApplicationController
   def show
     @taxon = Spree::Taxon.find(params[:id])
-    @products = Spree::Product.joins(:taxons).includes_price_and_images.
-      self_and_descendants_taxons(@taxon)
+    @products = Spree::Product.self_and_descendants_taxons(@taxon).includes_price_and_images
     @root_taxons = Spree::Taxon.roots
+    @category_view = params[:view] || "grid"
   end
 end
