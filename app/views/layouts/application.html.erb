@@ -3,7 +3,7 @@
   <%= render 'layouts/head' %>
   <body>
     <div class="main-wrapper">
-      <%= render 'layouts/header' %>
+      <%= render 'layouts/header', collection: @root_taxons, as: :root_taxon %>
       <%= yield %>
       <%= render 'layouts/footer' %>
       <%= render 'layouts/copy_right' %>

@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     get :blog_right_sidebar,        to: 'sample#blog_right_sidebar'
     get :blog_single_left_sidebar,  to: 'sample#blog_single_left_sidebar'
     get :blog_single_right_sidebar, to: 'sample#blog_single_right_sidebar'
-    get :about_us,                  to: 'sample#about_us'
+    get :about_us,                  to: 'static_pages#about'
     get :tokushoho,                 to: 'sample#tokushoho'
     get :privacy_policy,            to: 'sample#privacy_policy'
 

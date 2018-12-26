@@ -88,30 +88,32 @@
             <div class="caption">
               <h4>Shirts</h4>
             </div>
-        </div>
+          </div>
         <% end %>
       </div>
       <div class="col-sm-4 col-xs-12">
-        <div class="thumbnail" onclick="location.href='single_product.html';">
-          <div class="imageWrapper">
-            <%= image_tag("home/featured-collection/featured-collection-02.jpg", :alt => "feature-collection-image") %>
-            <div class="masking"><a href="product_grid_left_sidebar.html" class="btn viewBtn">View Bags</a></div>
+        <%= link_to potepan_category_path(3), view: "grid" do %>
+          <div class="thumbnail">
+            <div class="imageWrapper">
+              <%= image_tag("home/featured-collection/featured-collection-02.jpg", :alt => "feature-collection-image") %>
+            </div>
+            <div class="caption">
+              <h4>Bags</h4>
+            </div>
           </div>
-          <div class="caption">
-            <h4>Bags</h4>
-          </div>
-        </div>
+        <% end %>
       </div>
       <div class="col-sm-4 col-xs-12">
-        <div class="thumbnail" onclick="location.href='single_product.html';">
-          <div class="imageWrapper">
-            <%= image_tag("home/featured-collection/featured-collection-03.jpg", :alt => "feature-collection-image") %>
-            <div class="masking"><a href="product_grid_left_sidebar.html" class="btn viewBtn">View Lifestyle</a></div>
+        <%= link_to potepan_category_path(4), view: "grid" do %>
+          <div class="thumbnail">
+            <div class="imageWrapper">
+              <%= image_tag("home/featured-collection/featured-collection-03.jpg", :alt => "feature-collection-image") %>
+            </div>
+            <div class="caption">
+              <h4>Lifestyle</h4>
+            </div>
           </div>
-          <div class="caption">
-            <h4>Lifestyle</h4>
-          </div>
-        </div>
+        <% end %>
       </div>
     </div>
     <% if @new_products != [] %>
