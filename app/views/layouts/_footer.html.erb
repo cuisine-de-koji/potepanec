@@ -4,26 +4,14 @@
     <div class="row">
       <div class="col-sm-2 col-xs-12">
         <div class="footerLink">
-          <h5>Accessories</h5>
-          <ul class="list-unstyled">
-            <li><a href="#">Body care </a></li>
-            <li><a href="#">Chambray </a></li>
-            <li><a href="#">Floral </a></li>
-            <li><a href="#">Rejuvination </a></li>
-            <li><a href="#">Shaving </a></li>
-            <li><a href="#">Toilette </a></li>
-          </ul>
+          <h5>Categories</h5>
+            <%= taxons_menu(header: false) %>
         </div>
       </div>
       <div class="col-sm-2 col-xs-12">
         <div class="footerLink">
           <h5>BRANDS</h5>
-          <ul class="list-unstyled">
-            <li><a href="#">Barbour </a></li>
-            <li><a href="#">Brioni </a></li>
-            <li><a href="#">Oliver Spencer</a></li>
-            <li><a href="#">Belstaff</a></li>
-          </ul>
+            <%= taxons_menu("brand", header: false) %>
         </div>
       </div>
       <div class="col-sm-2 col-xs-12">
