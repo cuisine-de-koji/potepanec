@@ -8,4 +8,7 @@ class Potepan::ProductsController < ApplicationController
       includes_price_and_images.
       random_and_limitted_items(RELATED_PRODUCTS_NUMS)
   end
+
+  def index
+  end
 end

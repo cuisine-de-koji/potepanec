@@ -9,6 +9,17 @@ RSpec.describe Potepan::ProductsController, type: :controller do
     get :show, params: { id: dinasors_list.first.id }
   end
 
+  describe 'GET #index' do
+    it 'レスポンス成功' do
+      get :index
+      expect(response).to have_http_status(:success)
+    end
+    it 'index template をレンダリング' do
+      get :index
+      expect(response).to render_template :index
+    end
+  end
+
   describe 'GET #show' do
     it "returns http success" do
       expect(response).to have_http_status(:success)
