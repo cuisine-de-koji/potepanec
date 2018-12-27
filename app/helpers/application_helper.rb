@@ -22,4 +22,16 @@ module ApplicationHelper
       safe_join(taxons.unshift(taxon_header).compact, "\n")
     end
   end
+
+  def option_filter_menu_by(name: 'tshirt-color')
+    option_values = Spree::OptionType.find_by(name: name).option_values
+    content_tag :ul, class: 'list-unstyled clearfix' do
+      safe_join(option_values.map do |option_value|
+        content_tag :li do
+          link_to option_value.presentation,
+                  potepan_products_path(name.to_sym => option_value.name)
+        end
+      end, "\n")
+    end
+  end
 end
