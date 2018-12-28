@@ -11,15 +11,9 @@
       </div>
       <div class="col-xs-6">
         <ol class="breadcrumb pull-right">
-          <li>
-            <a href="index.html">Home</a>
-          </li>
-          <li>
-            <a href="#">shop</a>
-          </li>
-          <li class="active">
-            <%= title_or_breadcrumbs %>
-          </li>
+          <li><%= link_to 'Home', potepan_path %></li>
+          <li><%= link_to 'Categories', potepan_category_path(Spree::Taxon.first.id) %></li>
+          <li class="active"><%= title_or_breadcrumbs %></li>
         </ol>
       </div>
     </div>

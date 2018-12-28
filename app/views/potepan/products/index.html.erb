@@ -1,0 +1,35 @@
+<% provide(:title, '商品一覧') %>
+<% page = { name: 'Product' } %>
+
+<section class="lightSection clearfix pageHeader">
+  <%= render partial: 'shared/page_header', locals: { page: page } %>
+</section>
+
+<%# MAIN CONTENT SECTION %>
+<section class="mainContent clearfix productsContent">
+  <div class="container">
+    <div class="row">
+      <%# Sidebar %>
+      <%= render 'shared/sidebar'%>
+
+      <%# FilterArea %>
+      <div class="col-md-9 col-sm-8 col-xs-12">
+        <%= render partial: 'shared/filter_area' %>
+        <%# Main Contents %>
+        <% if list_view?(@view) %>
+          <div class="row productListSingle">
+            <%= render partial: 'shared/list_item', collection: @products %>
+          </div>
+        <% else %>
+          <div class="row">
+            <%= render partial: 'shared/grid_item', collection: @products, as: :product, locals: { column: 3 } %>
+          </div>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%# Partners %>
+<%= render 'shared/partners' %>
