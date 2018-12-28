@@ -12,7 +12,7 @@ class Potepan::ProductsController < ApplicationController
   def index
     @view = params[:view]
     @roots = Spree::Taxon.roots
-    if request.query_parameters.any?
+    if params_has_filter?
       @products = load_filter_products_by(option_values_names)
     else
       @products = Spree::Product.all
@@ -35,5 +35,11 @@ class Potepan::ProductsController < ApplicationController
 
     def valid_option_values
       %w(tshirt-color tshirt-size)
+    end
+
+    def params_has_filter?
+      request.query_parameters.keys.any? do |k|
+        valid_option_values.include?(k.to_s)
+      end
     end
 end
