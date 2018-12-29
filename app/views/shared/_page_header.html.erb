@@ -5,7 +5,10 @@
       <div class="col-xs-6">
         <div class="page-title">
           <h2>
-            <%= title_or_breadcrumbs %>
+            <%= page[:name] || page.name %>
+              <% if page[:filter_name] %>
+                <span style="margin-left: 8px;"><%= page[:filter_name] %></span>
+              <% end %>
           </h2>
         </div>
       </div>
@@ -13,7 +16,7 @@
         <ol class="breadcrumb pull-right">
           <li><%= link_to 'Home', potepan_path %></li>
           <li><%= link_to 'Categories', potepan_category_path(Spree::Taxon.first.id) %></li>
-          <li class="active"><%= title_or_breadcrumbs %></li>
+          <li class="active"><%= page[:name] || page.name %></li>
         </ol>
       </div>
     </div>

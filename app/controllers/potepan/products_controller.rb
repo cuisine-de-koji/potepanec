@@ -37,6 +37,7 @@ class Potepan::ProductsController < ApplicationController
       %w(tshirt-color tshirt-size)
     end
 
+    #valid_option_vlues以外のparamsが入力されたときを除外
     def params_has_filter?
       request.query_parameters.keys.any? do |k|
         valid_option_values.include?(k.to_s)

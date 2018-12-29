@@ -1,5 +1,5 @@
 <% provide(:title, '商品一覧') %>
-<% page = { name: 'Product' } %>
+<% page = { name: "Product", filter_name: params['tshirt-color'.to_sym] || params['tshirt-size'.to_sym] || '' } %>
 
 <section class="lightSection clearfix pageHeader">
   <%= render partial: 'shared/page_header', locals: { page: page } %>
@@ -16,13 +16,13 @@
       <div class="col-md-9 col-sm-8 col-xs-12">
         <%= render partial: 'shared/filter_area' %>
         <%# Main Contents %>
-        <% if list_view?(@view) %>
+        <% if @category_view == "list" %>
           <div class="row productListSingle">
-            <%= render partial: 'shared/list_item', collection: @products %>
+            <%= render partial: 'shared/product_list_view', collection: @products, as: :product %>
           </div>
         <% else %>
           <div class="row">
-            <%= render partial: 'shared/grid_item', collection: @products, as: :product, locals: { column: 3 } %>
+            <%= render partial: 'shared/product_grid_view', collection: @products, as: :product %>
           </div>
         <% end %>
         </div>
@@ -32,4 +32,4 @@
 </section>
 
 <%# Partners %>
-<%= render 'shared/partners' %>
+<%= render 'shared/partners_logo' %>

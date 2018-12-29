@@ -1,31 +1,19 @@
 <% provide(:title, @taxon.name) %>
-<%= render 'shared/page_header', title_or_breadcrumbs: @taxon.name %>
+<%= render 'shared/page_header', page: @taxon %>
 <!-- MAIN CONTENT SECTION -->
 <section class="mainContent clearfix productsContent">
   <div class="container">
     <div class="row">
-      <div class="col-md-3 col-sm-4 col-xs-12 sideBar">
-        <div class="panel panel-default">
-          <div class="panel-heading">商品カテゴリー</div>
-          <div class="panel-body">
-            <div class="collapse navbar-collapse navbar-ex1-collapse navbar-side-collapse">
-              <ul class="nav navbar-nav side-nav">
-                <%= render partial: 'categories_filter', collection: @root_taxons, as: :root_taxon %>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <%= render partial: 'search_filter' %>
-      </div>
+      <%= render 'shared/sidebar'%>
       <div class="col-md-9 col-sm-8 col-xs-12">
         <%= render partial: 'shared/filter_area' %>
         <% if @category_view == "list" %>
           <div class="row productListSingle">
-            <%= render partial: 'product_list_view', collection: @products, as: :product %>
+            <%= render partial: 'shared/product_list_view', collection: @products, as: :product %>
           </div>
         <% else %>
           <div class="row">
-            <%= render partial: 'product_grid_view', collection: @products, as: :product %>
+            <%= render partial: 'shared/product_grid_view', collection: @products, as: :product %>
           </div>
         <% end %>
       </div>
