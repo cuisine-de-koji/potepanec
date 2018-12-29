@@ -1,5 +1,7 @@
 class Potepan::ProductsController < ApplicationController
   RELATED_PRODUCTS_NUMS = 8
+  VALID_PARAMETER = %i(view sorted tshirt-size tshirt-color).freeze
+
   def show
     @product = Spree::Product.find(params[:id])
     @images = @product.images
@@ -12,35 +14,14 @@ class Potepan::ProductsController < ApplicationController
   def index
     @view = params[:view]
     @roots = Spree::Taxon.roots
-    if params_has_filter?
-      @products = load_filter_products_by(option_values_names)
-    else
-      @products = Spree::Product.all
-    end
+
+    @product_filter = ProductFilter.new(filter_params)
+    @products = @product_filter.filtered_products
   end
 
   private
 
-    def load_filter_products_by(option_values_names)
-      product_ids = Spree::Variant.joins(:option_values)
-                                  .where(spree_option_values:
-                                        { name: option_values_names })
-                                  .pluck(:product_id).uniq
-      Spree::Product.where(id: product_ids)
-    end
-
-    def option_values_names
-      params.slice(*valid_option_values).values
-    end
-
-    def valid_option_values
-      %w(tshirt-color tshirt-size)
-    end
-
-    #valid_option_vlues以外のparamsが入力されたときを除外
-    def params_has_filter?
-      request.query_parameters.keys.any? do |k|
-        valid_option_values.include?(k.to_s)
-      end
+    def filter_params
+      params.permit(*VALID_PARAMETER)
     end
 end
