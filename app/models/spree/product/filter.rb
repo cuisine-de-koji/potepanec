@@ -8,7 +8,7 @@ class ProductFilter
     @option_value = params['tshirt-color'.to_sym].presence || params['tshirt-size'.to_sym].presence
   end
 
-  def filter
+  def filtered_products
     scopes = get_base_scopes(@taxon)
     scopes = scopes.filter_with_option_value(@option_value) if @option_value
     scopes
@@ -16,9 +16,9 @@ class ProductFilter
 
   private
 
-  def get_base_scopes(taxon = nil)
-    return Spree::Product.in_taxon(taxon) if taxon
+    def get_base_scopes(taxon = nil)
+      return Spree::Product.in_taxon(taxon) if taxon
 
-    Spree::Product.all
-  end
+      Spree::Product.all
+    end
 end
