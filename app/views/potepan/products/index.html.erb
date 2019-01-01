@@ -1,12 +1,21 @@
-<% provide(:title, @taxon.name) %>
-<%= render 'shared/page_header', page: @taxon %>
-<!-- MAIN CONTENT SECTION -->
+<% provide(:title, '商品一覧') %>
+<% page = { name: "Product", filter_name: params['tshirt-color'.to_sym] || params['tshirt-size'.to_sym] || '' } %>
+
+<section class="lightSection clearfix pageHeader">
+  <%= render partial: 'shared/page_header', locals: { page: page } %>
+</section>
+
+<%# MAIN CONTENT SECTION %>
 <section class="mainContent clearfix productsContent">
   <div class="container">
     <div class="row">
+      <%# Sidebar %>
       <%= render 'shared/sidebar'%>
+
+      <%# FilterArea %>
       <div class="col-md-9 col-sm-8 col-xs-12">
         <%= render partial: 'shared/filter_area' %>
+        <%# Main Contents %>
         <% if @category_view == "list" %>
           <div class="row productListSingle">
             <%= render partial: 'shared/product_list_view', collection: @products, as: :product %>
@@ -16,9 +25,11 @@
             <%= render partial: 'shared/product_grid_view', collection: @products, as: :product %>
           </div>
         <% end %>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
+<%# Partners %>
 <%= render 'shared/partners_logo' %>

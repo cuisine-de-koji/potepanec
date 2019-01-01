@@ -10,4 +10,12 @@ Spree::Product.class_eval do
       where(spree_taxons: { id: taxon_ids }).distinct.
       reject_self(self)
   end
+
+  def self.filter_with_option_value(names)
+    product_ids = Spree::Variant.joins(:option_values)
+                                .where(spree_option_values:
+                                      { name: names })
+                                .pluck(:product_id).uniq
+    where(id: product_ids)
+  end
 end
