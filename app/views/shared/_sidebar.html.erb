@@ -1,0 +1,13 @@
+<div class="col-md-3 col-sm-4 col-xs-12 sideBar">
+  <div class="panel panel-default">
+    <div class="panel-heading">商品カテゴリー</div>
+    <div class="panel-body">
+      <div class="collapse navbar-collapse navbar-ex1-collapse navbar-side-collapse">
+        <ul class="nav navbar-nav side-nav">
+          <%= render partial: 'shared/category_filter', collection: @root_taxons, as: :root_taxon %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <%= render partial: 'shared/search_filter' %>
+</div>

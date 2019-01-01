@@ -48,7 +48,7 @@ RSpec.describe Spree::Product, type: :model do
 
     describe "#reject_self" do
       it '取得した関連商品から詳細商品自身は省かれている' do
-        expect(Spree::Product.reject_self(dinasor_1)).to_not include dinasor_1
+        expect(Spree::Product.reject_self(dinasor_1)).not_to include dinasor_1
       end
     end
   end

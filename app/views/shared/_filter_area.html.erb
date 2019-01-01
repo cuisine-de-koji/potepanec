@@ -1,0 +1,21 @@
+<div class="row filterArea">
+  <div class="col-xs-6">
+    <select name="guiest_id1" id="guiest_id1" class="select-drop">
+      <option value="0">並び替え</option>
+      <option value="1">人気順</option>
+      <option value="2">安い順</option>
+      <option value="3">新着順</option>
+      <option value="3">高い順</option>
+    </select>
+  </div>
+  <div class="col-xs-6">
+    <div class="btn-group pull-right" role="group">
+      <%= link_to url_for(params.permit(*filter_params).merge(view: 'grid')), class: @category_view == "list" ? "btn btn-default" : "btn btn-default active" do %>
+        <i class="fa fa-th" aria-hidden="true"></i><span>Grid</span>
+      <% end %>
+      <%= link_to url_for(params.permit(*filter_params).merge(view: 'list')), class: @category_view == "list" ? "btn btn-default active" : "btn btn-default" do %>
+        <i class="fa fa-th-list" aria-hidden="true"></i><span>List</span>
+      <% end %>
+    </div>
+  </div>
+</div>
