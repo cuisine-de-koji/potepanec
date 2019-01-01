@@ -36,6 +36,6 @@ module ApplicationHelper
   end
 
   def filter_params
-    %w(tshirt-size tshirt-color view).map(&:to_sym)
+    %w(tshirt-size tshirt-color view sort)
   end
 end

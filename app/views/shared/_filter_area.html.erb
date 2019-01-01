@@ -1,12 +1,11 @@
 <div class="row filterArea">
   <div class="col-xs-6">
-    <select name="sort" id="sorting_select" class="select-drop">
-      <option value="">並び替え</option>
-      <option value="newest">新着順</option>
-      <option value="price_low">価格の安い順</option>
-      <option value="price_high">価格の高い順</option>
-      <option value="oldest">古い順</option>
-    </select>
+    <%= form_tag request.path, method: :get do %>
+      <%= hidden_field_tag 'tshirt-size', params['tshirt-size'] if params['tshirt-size'] %>
+      <%= hidden_field_tag 'tshirt-color', params['tshirt-color'] if params['tshirt-color'] %>
+      <%= hidden_field_tag 'view', params['view'] if params['view'] %>
+      <%= select_tag(:sort, options_for_select(@product_filter.sort_select_collection, {selected: params[:sort] || 'newest'}), class: 'select-drop', onchange: 'this.form.submit();') %>
+    <% end %>
   </div>
   <div class="col-xs-6">
     <div class="btn-group pull-right" role="group">

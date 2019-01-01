@@ -11,9 +11,30 @@ class ProductFilter
   def filtered_products
     scopes = get_base_scopes(@taxon)
     scopes = scopes.filter_with_option_value(@option_value) if @option_value
-    scopes = scopes.send(@sort.to_sym) if @sort
+    if @sort
+      case @sort
+      when 'price_up' then
+        scopes = scopes.price_high
+      when 'price_down' then
+        scopes = scopes.price_low
+      when 'oldest' then
+        scopes = scopes.oldest
+      else
+        scopes = scopes.newest
+      end
+    else
+      scopes
+    end
     scopes
   end
+
+   def sort_select_collection
+     { '新着順': 'newest',
+       '値段の高い順': 'price_up',
+       '値段の低い順': 'price_down',
+       '古い順': 'oldest' }
+   end
+
 
   private
 
