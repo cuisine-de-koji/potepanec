@@ -4,7 +4,7 @@
       <%= hidden_field_tag 'tshirt-size', params['tshirt-size'] if params['tshirt-size'] %>
       <%= hidden_field_tag 'tshirt-color', params['tshirt-color'] if params['tshirt-color'] %>
       <%= hidden_field_tag 'view', params['view'] if params['view'] %>
-      <%= select_tag(:sort, options_for_select(@product_filter.sort_select_collection, {selected: params[:sort] || 'newest'}), class: 'select-drop', onchange: 'this.form.submit();') %>
+      <%= select_tag(:sort, options_for_select(@product_filter.sort_select_collection, { selected: params[:sort] || 'newest' }), class: 'select-drop', onchange: 'this.form.submit();') %>
     <% end %>
   </div>
   <div class="col-xs-6">

@@ -13,7 +13,7 @@ class Potepan::ProductsController < ApplicationController
 
   def index
     @view = params[:view]
-    @roots = Spree::Taxon.roots
+    @root_taxons = Spree::Taxon.roots
     @product_filter = ProductFilter.new(filter_params)
     @products = @product_filter.filtered_products
   end

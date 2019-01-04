@@ -3,7 +3,7 @@ class ProductFilter
 
   def initialize(params = {})
     @taxon = params[:taxon].presence
-    @view = 'grid' || params[:view]
+    @view = params[:view] || 'grid'
     @sort = params[:sort].presence
     @option_value = params['tshirt-color'.to_sym].presence || params['tshirt-size'.to_sym].presence
   end
