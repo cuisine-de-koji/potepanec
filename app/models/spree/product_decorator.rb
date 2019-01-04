@@ -7,6 +7,8 @@ Spree::Product.class_eval do
   scope :oldest, -> { available.distinct.reorder(available_on: :asc) }
   scope :price_low, -> { select('spree_products.*, spree_prices.amount').joins(master: :default_price).reorder(Spree::Price.arel_table[:amount].asc) }
   scope :price_high, -> { select('spree_products.*, spree_prices.amount').joins(master: :default_price).reorder(Spree::Price.arel_table[:amount].desc) }
+  scope :search_with, -> (word) { where('name LIKE :word OR description LIKE :word', word: "%#{Spree::Product.escape_meta(word)}%") }
+
 
 
   def related_products
@@ -21,5 +23,11 @@ Spree::Product.class_eval do
                                       { name: names })
                                 .pluck(:product_id).uniq
     where(id: product_ids)
+  end
+
+  private
+
+  def self.escape_meta(string)
+    string.gsub(/[%_]/) { |m| "\\#{m}" }
   end
 end
