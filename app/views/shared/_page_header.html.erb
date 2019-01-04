@@ -8,6 +8,8 @@
             <%= page[:name] || page.name %>
               <% if page[:filter_name] %>
                 <span style="margin-left: 8px;"><%= page[:filter_name] %></span>
+              <% elsif page[:keyword] %>
+                <span style="margin-left: 8px;">: <%= params[:keyword] %></span>
               <% end %>
           </h2>
         </div>

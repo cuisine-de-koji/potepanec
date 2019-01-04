@@ -1,16 +1,18 @@
 class ProductFilter
-  attr_reader :taxon, :view, :sort, :option_value
+  attr_reader :taxon, :view, :sort, :option_value, :keyword
 
   def initialize(params = {})
     @taxon = params[:taxon].presence
     @view = params[:view] || 'grid'
     @sort = params[:sort].presence
     @option_value = params['tshirt-color'.to_sym].presence || params['tshirt-size'.to_sym].presence
+    @keyword = params['keyword'].presence
   end
 
   def filtered_products
     scopes = get_base_scopes(@taxon)
     scopes = scopes.filter_with_option_value(@option_value) if @option_value
+    scopes = scopes.search_with(keyword) if keyword
     if @sort
       case @sort
       when 'price_up' then
