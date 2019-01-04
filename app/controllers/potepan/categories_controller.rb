@@ -1,5 +1,5 @@
 class Potepan::CategoriesController < ApplicationController
-  VALID_PARAMETER = %i(view sort tshirt-size tshirt-color)
+  VALID_PARAMETER = %i(view sort tshirt-size tshirt-color keyword).freeze
 
   def show
     @taxon = Spree::Taxon.find(params[:id])
