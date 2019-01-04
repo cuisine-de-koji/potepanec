@@ -1,6 +1,6 @@
 class Potepan::ProductsController < ApplicationController
   RELATED_PRODUCTS_NUMS = 8
-  VALID_PARAMETER = %i(view sorted tshirt-size tshirt-color).freeze
+  VALID_PARAMETER = %i(view sort tshirt-size tshirt-color).freeze
 
   def show
     @product = Spree::Product.find(params[:id])
@@ -13,8 +13,7 @@ class Potepan::ProductsController < ApplicationController
 
   def index
     @view = params[:view]
-    @roots = Spree::Taxon.roots
-
+    @root_taxons = Spree::Taxon.roots
     @product_filter = ProductFilter.new(filter_params)
     @products = @product_filter.filtered_products
   end
