@@ -7,7 +7,7 @@ Spree::Product.class_eval do
   scope :oldest, -> { available.distinct.reorder(available_on: :asc) }
   scope :price_low, -> { select('spree_products.*, spree_prices.amount').joins(master: :default_price).reorder(Spree::Price.arel_table[:amount].asc) }
   scope :price_high, -> { select('spree_products.*, spree_prices.amount').joins(master: :default_price).reorder(Spree::Price.arel_table[:amount].desc) }
-  scope :search_with, -> (word) { where('name LIKE :word OR description LIKE :word', word: "%#{Spree::Product.escape_meta(word)}%") }
+  scope :search_with, -> (keyword) { where('name LIKE :keyword OR description LIKE :keyword', keyword: "%#{Spree::Product.escape_meta(keyword)}%") }
 
 
 
