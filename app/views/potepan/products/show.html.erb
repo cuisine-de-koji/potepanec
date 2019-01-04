@@ -44,7 +44,7 @@
             <h2><%= @product.name %></h2>
             <h3><%= @product.display_price %></h3>
             <p><%= @product.description %></p>
-            <%= render partial: 'cart_form'%>
+            <%= render partial: 'cart_form', locals: { product: @product } %>
             <div class="tabArea">
               <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#details">details</a></li>
