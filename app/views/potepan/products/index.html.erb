@@ -18,17 +18,24 @@
       <%# FilterArea %>
       <div class="col-md-9 col-sm-8 col-xs-12">
         <%= render partial: 'shared/filter_area' %>
-        <%# Main Contents %>
-        <% if @category_view == "list" %>
-          <div class="row productListSingle">
-            <%= render partial: 'shared/product_list_view', collection: @products, as: :product %>
-          </div>
+
+          <%# Main Contents %>
+        <% if @products.any? %>
+          <% if @category_view == "list" %>
+            <div class="row productListSingle">
+              <%= render partial: 'shared/product_list_view', collection: @products, as: :product %>
+            </div>
+          <% else %>
+            <div class="row">
+              <%= render partial: 'shared/product_grid_view', collection: @products, as: :product %>
+            </div>
+          <% end %>
         <% else %>
-          <div class="row">
-            <%= render partial: 'shared/product_grid_view', collection: @products, as: :product %>
-          </div>
+          <p>
+            <span><%= "'#{params[:keyword]}'に一致する" if params[:keyword]%></span>
+            商品がありません。
+          </p>
         <% end %>
-        </div>
       </div>
     </div>
   </div>
