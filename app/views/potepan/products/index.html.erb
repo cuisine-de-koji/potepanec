@@ -1,5 +1,8 @@
 <% provide(:title, '商品一覧') %>
-<% page = { name: "Product", filter_name: params['tshirt-color'.to_sym] || params['tshirt-size'.to_sym] || '' } %>
+<% page = { name: "Product",
+            filter_name: params['tshirt-color'.to_sym] || params['tshirt-size'.to_sym] || nil,
+            keyword: params['keyword'] || nil
+ } %>
 
 <section class="lightSection clearfix pageHeader">
   <%= render partial: 'shared/page_header', locals: { page: page } %>
