@@ -1,1 +1,16 @@
-<h1>Hello cart!</h1>
+<section class="lightSection clearfix pageHeaderImage">
+  <%= render partial: 'shared/page_header_table_block', locals: { name: 'cart' } %>
+</section>
+
+<%# MAIN CONTENT SECTION %>
+<section class="mainContent clearfix cartListWrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="cartListInner">
+          <%= render 'order_form' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

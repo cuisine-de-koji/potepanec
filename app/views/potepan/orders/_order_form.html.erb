@@ -1,0 +1,66 @@
+<form action="#">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>商品名</th>
+          <th>価格</th>
+          <th>数</th>
+          <th>小計</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-xs-2">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <span class="cartImage"><%= image_tag("img/products/cart-image.jpg", :alt => "image") %></span>
+          </td>
+          <td class="col-xs-4">Italian Winter Hat</td>
+          <td class="col-xs-2">99円</td>
+          <td class="col-xs-2"><input type="text" placeholder="1"></td>
+          <td class="col-xs-2">99円</td>
+        </tr>
+        <tr>
+          <td class="col-xs-2">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <span class="cartImage"><%= image_tag("img/products/cart-image.jpg", :alt => "image") %></span>
+          </td>
+          <td class="col-xs-4">Italian Winter Hat</td>
+          <td class="col-xs-2">99円</td>
+          <td class="col-xs-2"><input type="text" placeholder="1"></td>
+          <td class="col-xs-2">99円</td>
+        </tr>
+        <tr>
+          <td class="col-xs-2">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <span class="cartImage"><%= image_tag("img/products/cart-image.jpg", :alt => "image") %></span>
+          </td>
+          <td class="col-xs-4">Italian Winter Hat</td>
+          <td class="col-xs-2">99円</td>
+          <td class="col-xs-2"><input type="text" placeholder="1"></td>
+          <td class="col-xs-2">99円</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="updateArea">
+   <!--  <div class="input-group">
+      <input type="text" class="form-control" placeholder="I have a discount coupon" aria-describedby="basic-addon2">
+      <a href="#" class="btn input-group-addon" id="basic-addon2">apply coupon</a>
+    </div> -->
+    <a href="#" class="btn">アップデート</a>
+  </div>
+  <div class="row totalAmountArea">
+    <div class="col-sm-4 col-sm-offset-8 col-xs-12">
+      <ul class="list-unstyled">
+        <li>小計 <span>792円</span></li>
+        <li>消費税 <span>18円</span></li>
+        <li>総計 <span class="grandTotal">810円</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="checkBtnArea">
+    <a href="checkout_step_1.html" class="btn btn-primary btn-block">購入する<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+  </div>
+</form>
