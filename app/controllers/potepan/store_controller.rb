@@ -8,6 +8,14 @@ module Potepan
     # -> Storecontroller を継承したcontroller を通ると guest_token が cookie[:guest_token]
     # 保存される
     include Spree::Core::ControllerHelpers::Auth
+    # ovarride set_token
+    # destroy permanent!
+    def set_guest_token
+      unless cookies.signed[:guest_token].present?
+        cookies.signed[:guest_token] = SecureRandom.urlsafe_base64(nil, false)
+      end
+      puts 'set_token!'
+    end
 
     # code -> solidus_core/lib/spree/controller_helpers/order.rb
     #
