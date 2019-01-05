@@ -11,6 +11,7 @@
         </tr>
       </thead>
       <tbody>
+        <!--
         <tr>
           <td class="col-xs-2">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -21,26 +22,27 @@
           <td class="col-xs-2"><input type="text" placeholder="1"></td>
           <td class="col-xs-2">99円</td>
         </tr>
-        <tr>
-          <td class="col-xs-2">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <span class="cartImage"><%= image_tag("img/products/cart-image.jpg", :alt => "image") %></span>
-          </td>
-          <td class="col-xs-4">Italian Winter Hat</td>
-          <td class="col-xs-2">99円</td>
-          <td class="col-xs-2"><input type="text" placeholder="1"></td>
-          <td class="col-xs-2">99円</td>
-        </tr>
-        <tr>
-          <td class="col-xs-2">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <span class="cartImage"><%= image_tag("img/products/cart-image.jpg", :alt => "image") %></span>
-          </td>
-          <td class="col-xs-4">Italian Winter Hat</td>
-          <td class="col-xs-2">99円</td>
-          <td class="col-xs-2"><input type="text" placeholder="1"></td>
-          <td class="col-xs-2">99円</td>
-        </tr>
+        -->
+        <% if @order.line_items.any? %>
+　        <% @order.line_items.each do |lineitem| %>
+            <tr>
+              <td class="col-xs-2">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <span class="cartImage">
+                  <% if lineitem.variant.images.length == 0 %>
+                    <%= image_tag(lineitem.variant.product.display_image.attachment(:small)) %>
+                  <% else %>
+                    <%= image_tag(lineitem.variant.images.first.attachment.url(:small)) %>
+                  <% end %>
+                </span>
+              </td>
+              <td class="col-xs-4"><%= lineitem.name %></td>
+              <td class="col-xs-2"><%= lineitem.single_money.to_html%></td>
+              <td class="col-xs-2"><input type="text" placeholder="1"></td>
+              <td class="col-xs-2"><%= lineitem.display_amount.to_html %></td>
+            </tr>
+          <% end %>
+        <% end %>
       </tbody>
     </table>
   </div>
