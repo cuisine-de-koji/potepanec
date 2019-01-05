@@ -1,4 +1,6 @@
-class Potepan::OrdersController < ApplicationController
-  def add_cart
+module Potepan
+  class OrdersController < Potepan::StoreController
+    def add_cart
+    end
   end
 end

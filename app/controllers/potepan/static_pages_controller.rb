@@ -1,4 +1,6 @@
-class Potepan::StaticPagesController < ApplicationController
-  def about
+module Potepan
+  class StaticPagesController < Potepan::StoreController
+    def about
+    end
   end
 end
