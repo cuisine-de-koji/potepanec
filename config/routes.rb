@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get '/',                        to: 'homes#index'
     get 'index',                    to: 'homes#index'
     get '/search',                  to: 'products#search'
+    get '/cart',                    to: 'orders#edit'
     get :product_grid_left_sidebar, to: 'sample#product_grid_left_sidebar'
     get :product_list_left_sidebar, to: 'sample#product_list_left_sidebar'
     get :single_product,            to: 'sample#single_product'
