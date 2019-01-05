@@ -2,7 +2,7 @@
   <div class="media">
     <div class="media-left">
       <%= image_tag product.display_image.attachment(:product), :alt => "products-img" %>
-      <span class="maskingImage"><a data-toggle="modal" href=".quick-view" class="btn viewBtn">Quick View</a></span>
+      <span class="maskingImage"><a data-target="#modal-<%= product.id %>" data-toggle="modal" href=".quick-view" class="btn viewBtn">Quick View</a></span>
     </div>
     <div class="media-body">
       <%= link_to potepan_product_path(product.id) do %>
@@ -17,3 +17,5 @@
     </div>
   </div>
 </div>
+
+<%= render partial: 'shared/modal/product_quick_view_modal', locals: { product: product } %>
