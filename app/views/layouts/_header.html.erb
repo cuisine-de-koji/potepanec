@@ -30,35 +30,24 @@
               </ul>
             </li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-shopping-cart"></i>0</円a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-shopping-cart"></i>
+                <%= current_order.try(:display_total) || '$0' %>
+              </a>
               <ul class="dropdown-menu dropdown-menu-right">
-                <li>Item(s) in your cart</li>
-                <li>
-                  <a href="#">
-                    <div class="media">
-                      <%= image_tag("img/home/cart-items/cart-item-01.jpg", :class => "media-left media-object", :alt => "cart-Image") %>
-                      <div class="media-body">
-                        <h5 class="media-heading">INCIDIDUNT UT <br><span>2 X 199円</span></h5>
-                      </div>
+                <% if current_order.nil? || current_order.line_items.empty? %>
+                  <li>カートに商品はありません</li>
+                <% else %>
+                  <li>カートに商品が <%= current_order.line_items.count %> 点あります</li>
+                  <%= render partial: 'layouts/line_item', collection: current_order.line_items %>
+                  <li>
+                    <div class="btn-group" role="group" aria-label="...">
+                      <%= button_tag type: 'button', onclick: "window.location.href='#{potepan_cart_path}'", class: 'btn btn-default' do %>
+                        カートを見る
+                      <% end %>
+                      <button type="button" class="btn btn-default">購入する</button>
                     </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <div class="media">
-                      <%= image_tag("img/home/cart-items/cart-item-01.jpg", :class => "media-left media-object", :alt => "cart-Image") %>
-                      <div class="media-body">
-                        <h5 class="media-heading">INCIDIDUNT UT <br><span>2 X 199円</span></h5>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <div class="btn-group" role="group" aria-label="...">
-                    <button type="button" class="btn btn-default">Shopping Cart</button>
-                    <button type="button" class="btn btn-default">Checkout</button>
-                  </div>
-                </li>
+                  </li>
+                <% end %>
               </ul>
             </li>
           </ul>

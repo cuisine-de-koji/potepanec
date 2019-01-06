@@ -1,0 +1,16 @@
+<li>
+  <%= link_to potepan_product_path(line_item.variant.product.slug) do %>
+    <div class="media">
+      <% if line_item.variant.images.length == 0 %>
+        <%= image_tag(line_item.variant.product.display_image.attachment(:small), :class => "media-left media-object", width: '64px') %>
+      <% else %>
+        <%= image_tag(line_item.variant.images.first.attachment.url(:small), :class => "media-left media-object", width: '64px') %>
+      <% end %>
+      <div class="media-body">
+        <h5 class="media-heading"><%= line_item.name %><br>
+          <span><%= line_item.single_money.to_html %> X <%= line_item.quantity %></span>
+        </h5>
+      </div>
+    </div>
+  <% end %>
+</li>
