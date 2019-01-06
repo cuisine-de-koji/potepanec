@@ -1,7 +1,10 @@
 module Potepan
   class OrdersController < Potepan::StoreController
     def edit
-      @order = current_order
+      @order = current_order || Spree::Order.incomplete.find_or_initialize_by(guest_token: cookies.signed[:guest_token])
+    end
+
+    def update
     end
 
     def add_cart
@@ -9,9 +12,8 @@ module Potepan
       variant = Spree::Variant.find(params[:variant_id])
       quantity = params[:quantity].to_i
 
-      @order.content.add(variant, quantify)
+      @order.contents.add(variant, quantity)
 
-      binding.pry
       redirect_to potepan_cart_url
     end
   end

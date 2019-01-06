@@ -1,0 +1,20 @@
+<%= order_form.fields_for :line_items, line_item do |item_form| %>
+  <tr>
+    <td class="col-xs-2">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <span class="cartImage">
+        <% if line_item.variant.images.length == 0 %>
+          <%= image_tag(line_item.variant.product.display_image.attachment(:small)) %>
+        <% else %>
+          <%= image_tag(line_item.variant.images.first.attachment.url(:small)) %>
+        <% end %>
+      </span>
+    </td>
+    <td class="col-xs-4"><%= line_item.name %></td>
+    <td class="col-xs-2"><%= line_item.single_money.to_html %></td>
+    <td class="col-xs-2">
+      <%= item_form.number_field :quantity, min: 0 %>
+    </td>
+    <td class="col-xs-2"><%= line_item.display_amount.to_html %></td>
+  </tr>
+<% end %>

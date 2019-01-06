@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     get :tokushoho,                 to: 'sample#tokushoho'
     get :privacy_policy,            to: 'sample#privacy_policy'
     post '/add_cart',               to: 'orders#add_cart'
+    patch '/cart',                  to: 'orders#update'
 
     resources :products, only: [:show, :index]
     resources :categories, only: [:show]
