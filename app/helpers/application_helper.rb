@@ -35,6 +35,22 @@ module ApplicationHelper
     end
   end
 
+  def variants_select_tag(variants, name: 'variant_id', option: {})
+    option[:class] ||= 'select-drop'
+    option[:multiple] ||= false
+
+    collection = variants.map { |v| [v.options_text, v.id] }
+    select_tag(name, options_for_select(collection), multiple: option[:multiple], class: option[:class])
+  end
+
+  def quantity_select_tag(name: 'quantity', min: 1, max: 10, option: {})
+    option[:class] ||= 'select-drop'
+    option[:multiple] ||= false
+
+    collection = (min..max).map { |n| [n, n] }
+    select_tag(name, options_for_select(collection), multiple: option[:multiple], class: option[:class])
+  end
+
   def filter_params
     %w(tshirt-size tshirt-color view sort)
   end

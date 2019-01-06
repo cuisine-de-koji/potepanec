@@ -1,0 +1,18 @@
+<%= form_for :order, url: potepan_add_cart_path do |f| %>
+  <% if product.variants.any? %>
+    <span class="quick-drop">
+      <%= variants_select_tag(product.variants) %>
+    </span>
+  <% else %>
+    <%= hidden_field_tag 'variant_id', product.master.id %>
+  <% end %>
+
+  <span class="quick-drop">
+    <%= quantity_select_tag(name: 'quantity') %>
+  </span>
+  <div class="btn-area">
+    <%= content_tag :button, class: 'btn btn-primary btn-block', type: 'submit' do %>
+      カートへ入れる<i class="fa fa-angle-right" area-hidden='true'></i>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,20 @@
+<section class="lightSection clearfix pageHeaderImage">
+  <%= render partial: 'shared/page_header_table_block', locals: { name: 'cart' } %>
+</section>
+
+<%# MAIN CONTENT SECTION %>
+<section class="mainContent clearfix cartListWrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="cartListInner">
+          <% if @order.line_items.empty? %>
+            <p>カートは空です。</p>
+          <% else %>
+            <%= render partial: 'order_form', locals: { order: @order } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

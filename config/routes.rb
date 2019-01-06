@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     get '/',                        to: 'homes#index'
     get 'index',                    to: 'homes#index'
     get '/search',                  to: 'products#search'
+    get '/cart',                    to: 'orders#edit'
     get :product_grid_left_sidebar, to: 'sample#product_grid_left_sidebar'
     get :product_list_left_sidebar, to: 'sample#product_list_left_sidebar'
     get :single_product,            to: 'sample#single_product'
@@ -25,6 +26,8 @@ Rails.application.routes.draw do
     get :about_us,                  to: 'static_pages#about'
     get :tokushoho,                 to: 'sample#tokushoho'
     get :privacy_policy,            to: 'sample#privacy_policy'
+    post '/add_cart',               to: 'orders#add_cart'
+    patch '/cart',                  to: 'orders#update'
 
     resources :products, only: [:show, :index]
     resources :categories, only: [:show]

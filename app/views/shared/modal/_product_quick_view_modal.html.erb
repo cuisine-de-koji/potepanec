@@ -1,0 +1,21 @@
+<!-- PORDUCT QUICK VIEW MODAL -->
+<div id="modal-<%= product.id %>" class="modal fade quick-view" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <div class="media">
+          <div class="media-left">
+            <%= image_tag product.display_image.attachment.url, :class => "media-object", :alt => "Image" %>
+          </div>
+          <div class="media-body">
+            <h2><%= product.name %></h2>
+            <h3><%= product.price %></h3>
+            <p><%= product.description %></p>
+            <%= render partial: 'shared/cart_form', locals: { product: product } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
